@@ -1,0 +1,1202 @@
+<tables>
+  <table tablename="bl_blanket_defs">
+    <sql><![CDATA[begin delete bl_blanket_defs where blanket_type_id in (select b.blanket_type_id from bl_blanket_defs b where b.apex_appl_id='400');
+ insert into bl_blanket_defs t 
+( active_from, active_to, apex_appl_id, apex_page_id, blanket_type_id, description, flow_id, key_words, old_type_id, owner, status, sub_description)
+ select 
+ to_date(x.active_from,'DD-MM-YYYY HH24:MI:SS') as active_from, to_date(x.active_to,'DD-MM-YYYY HH24:MI:SS') as active_to, x.apex_appl_id, x.apex_page_id, x.blanket_type_id, x.description, x.flow_id, x.key_words, x.old_type_id, x.owner, x.status, x.sub_description
+ from xmltable ('/table/tabledata/row' passing xmltype(:1) 
+ columns active_from varchar2(200) path 'column[@name eq "active_from"]'
+, active_to varchar2(200) path 'column[@name eq "active_to"]'
+, apex_appl_id varchar2(100) path 'column[@name eq "apex_appl_id"]'
+, apex_page_id varchar2(100) path 'column[@name eq "apex_page_id"]'
+, blanket_type_id number path 'column[@name eq "blanket_type_id"]'
+, description varchar2(200) path 'column[@name eq "description"]'
+, flow_id number path 'column[@name eq "flow_id"]'
+, key_words varchar2(1000) path 'column[@name eq "key_words"]'
+, old_type_id varchar2(100) path 'column[@name eq "old_type_id"]'
+, owner varchar2(100) path 'column[@name eq "owner"]'
+, status varchar2(10) path 'column[@name eq "status"]'
+, sub_description varchar2(1000) path 'column[@name eq "sub_description"]'
+) x; end;
+]]></sql>
+    <tabledata>
+      <row tablename="bl_blanket_defs">
+        <column name="active_from"/>
+        <column name="active_to"/>
+        <column name="apex_appl_id"><![CDATA[400]]></column>
+        <column name="apex_page_id"><![CDATA[400]]></column>
+        <column name="blanket_type_id"><![CDATA[12226]]></column>
+        <column name="description"><![CDATA[Bestillingsblanket til Dantaxi]]></column>
+        <column name="flow_id"><![CDATA[20352]]></column>
+        <column name="key_words"><![CDATA[ØSC, Rekvirering, Betalingskort, Taxabonner, Fakturaspecifikation]]></column>
+        <column name="old_type_id"><![CDATA[BL04]]></column>
+        <column name="owner"><![CDATA[ØSC]]></column>
+        <column name="status"><![CDATA[AKTIV]]></column>
+        <column name="sub_description"><![CDATA[Rekvirering af personlige betalingskort, taxabonner og fakturaspecifikation pr. mail]]></column>
+      </row>
+    </tabledata>
+  </table>
+  <table tablename="bl_blanket_defs_fields">
+    <sql><![CDATA[begin delete bl_blanket_defs_fields where blanket_type_id in (select b.blanket_type_id from bl_blanket_defs b where b.apex_appl_id='400');
+ insert into bl_blanket_defs_fields t 
+( blanket_type_id, column_name, description, id)
+ select 
+ x.blanket_type_id, x.column_name, x.description, x.id
+ from xmltable ('/table/tabledata/row' passing xmltype(:1) 
+ columns blanket_type_id number path 'column[@name eq "blanket_type_id"]'
+, column_name varchar2(100) path 'column[@name eq "column_name"]'
+, description varchar2(200) path 'column[@name eq "description"]'
+, id number path 'column[@name eq "id"]'
+) x; end;
+]]></sql>
+    <tabledata>
+      <row tablename="bl_blanket_defs_fields">
+        <column name="blanket_type_id"><![CDATA[12226]]></column>
+        <column name="column_name"><![CDATA[APPROVER1]]></column>
+        <column name="description"><![CDATA[Chef]]></column>
+        <column name="id"><![CDATA[20330]]></column>
+      </row>
+      <row tablename="bl_blanket_defs_fields">
+        <column name="blanket_type_id"><![CDATA[12226]]></column>
+        <column name="column_name"><![CDATA[TEXT_ATTRIBUTE1]]></column>
+        <column name="description"><![CDATA[Stednummer for betillingen]]></column>
+        <column name="id"><![CDATA[20331]]></column>
+      </row>
+      <row tablename="bl_blanket_defs_fields">
+        <column name="blanket_type_id"><![CDATA[12226]]></column>
+        <column name="column_name"><![CDATA[TEXT_ATTRIBUTE2]]></column>
+        <column name="description"><![CDATA[Fornavn]]></column>
+        <column name="id"><![CDATA[20332]]></column>
+      </row>
+      <row tablename="bl_blanket_defs_fields">
+        <column name="blanket_type_id"><![CDATA[12226]]></column>
+        <column name="column_name"><![CDATA[TEXT_ATTRIBUTE3]]></column>
+        <column name="description"><![CDATA[Efternavn]]></column>
+        <column name="id"><![CDATA[20333]]></column>
+      </row>
+      <row tablename="bl_blanket_defs_fields">
+        <column name="blanket_type_id"><![CDATA[12226]]></column>
+        <column name="column_name"><![CDATA[TEXT_ATTRIBUTE4]]></column>
+        <column name="description"><![CDATA[Kontonummer]]></column>
+        <column name="id"><![CDATA[20334]]></column>
+      </row>
+      <row tablename="bl_blanket_defs_fields">
+        <column name="blanket_type_id"><![CDATA[12226]]></column>
+        <column name="column_name"><![CDATA[TEXT_ATTRIBUTE5]]></column>
+        <column name="description"><![CDATA[Taxablanket type]]></column>
+        <column name="id"><![CDATA[20336]]></column>
+      </row>
+      <row tablename="bl_blanket_defs_fields">
+        <column name="blanket_type_id"><![CDATA[12226]]></column>
+        <column name="column_name"><![CDATA[TEXT_ATTRIBUTE6]]></column>
+        <column name="description"><![CDATA[Taxabonner]]></column>
+        <column name="id"><![CDATA[20349]]></column>
+      </row>
+      <row tablename="bl_blanket_defs_fields">
+        <column name="blanket_type_id"><![CDATA[12226]]></column>
+        <column name="column_name"><![CDATA[TEXT_ATTRIBUTE9]]></column>
+        <column name="description"><![CDATA[Bemærkninger]]></column>
+        <column name="id"><![CDATA[20351]]></column>
+      </row>
+    </tabledata>
+  </table>
+  <table tablename="bl_action_process">
+    <sql><![CDATA[begin delete bl_action_process where flow_id in (select b.flow_id from bl_blanket_defs b where b.apex_appl_id='400' and b.flow_id is not null);
+ insert into bl_action_process t 
+( action, alt_text, created_by, created_date, flow_id, flow_way, id, mail_bcc, mail_body, mail_cc, mail_from, mail_subject, mail_to, new_status, next_user, postaction, preaction, status, updated_by, updated_date)
+ select 
+ x.action, x.alt_text, x.created_by, to_date(x.created_date,'DD-MM-YYYY HH24:MI:SS') as created_date, x.flow_id, x.flow_way, x.id, x.mail_bcc, case when length(x.mail_body)=0 then null else x.mail_body end as mail_body, x.mail_cc, x.mail_from, x.mail_subject, x.mail_to, x.new_status, x.next_user, x.postaction, x.preaction, x.status, x.updated_by, to_date(x.updated_date,'DD-MM-YYYY HH24:MI:SS') as updated_date
+ from xmltable ('/table/tabledata/row' passing xmltype(:1) 
+ columns action varchar2(100) path 'column[@name eq "action"]'
+, alt_text varchar2(100) path 'column[@name eq "alt_text"]'
+, created_by varchar2(200) path 'column[@name eq "created_by"]'
+, created_date varchar2(200) path 'column[@name eq "created_date"]'
+, flow_id number path 'column[@name eq "flow_id"]'
+, flow_way varchar2(100) path 'column[@name eq "flow_way"]'
+, id number path 'column[@name eq "id"]'
+, mail_bcc varchar2(4000) path 'column[@name eq "mail_bcc"]'
+, mail_body clob path 'column[@name eq "mail_body"]'
+, mail_cc varchar2(4000) path 'column[@name eq "mail_cc"]'
+, mail_from varchar2(100) path 'column[@name eq "mail_from"]'
+, mail_subject varchar2(200) path 'column[@name eq "mail_subject"]'
+, mail_to varchar2(4000) path 'column[@name eq "mail_to"]'
+, new_status varchar2(4000) path 'column[@name eq "new_status"]'
+, next_user varchar2(4000) path 'column[@name eq "next_user"]'
+, postaction varchar2(1000) path 'column[@name eq "postaction"]'
+, preaction varchar2(1000) path 'column[@name eq "preaction"]'
+, status varchar2(100) path 'column[@name eq "status"]'
+, updated_by varchar2(200) path 'column[@name eq "updated_by"]'
+, updated_date varchar2(200) path 'column[@name eq "updated_date"]'
+) x; end;
+]]></sql>
+    <tabledata>
+      <row tablename="bl_action_process">
+        <column name="action"><![CDATA[APPROVE_COUPONS]]></column>
+        <column name="alt_text"/>
+        <column name="created_by"><![CDATA[XXBLANKET]]></column>
+        <column name="created_date"><![CDATA[22-03-2022 16:05:49]]></column>
+        <column name="flow_id"><![CDATA[20352]]></column>
+        <column name="flow_way"><![CDATA[Bonner bestilles af kassen]]></column>
+        <column name="id"><![CDATA[20381]]></column>
+        <column name="mail_bcc"/>
+        <column name="mail_body"><![CDATA[<h2>#SQL:getBlanketDescription(BLANKET_TYPE_ID).</h2>
+
+<h2>Rekvirering af #SQL:getLookupValue(TEXT_ATTRIBUTE5).</h2>
+
+<table border="1" cellpadding="1" cellspacing="1">
+	<tbody>
+		<tr>
+			<td><strong>Blanketnr.</strong>:</td>
+			<td>#SQL:getFieldValue(LBNR).</td>
+		</tr>
+		<tr>
+			<td><strong>Sendt dato</strong>:</td>
+			<td>#SQL:getFieldValue(CREATED_DATE).</td>
+		</tr>
+		<tr>
+			<td><strong>Oprettet af</strong>:</td>
+			<td>#SQL:getUserFullName(CREATED_BY).</td>
+		</tr>
+		<tr>
+			<td><strong>Afdeling (stednummer):</strong></td>
+			<td>#SQL:getFieldValue(TEXT_ATTRIBUTE1).</td>
+		</tr>
+		<tr>
+			<td><strong>Vedr&oslash;rer:</strong></td>
+			<td>#SQL:getUserFullName(REGARDING).</td>
+		</tr>
+		<tr>
+			<td><strong>Kontonummer:</strong></td>
+			<td>#SQL:getFieldValue(TEXT_ATTRIBUTE4).</td>
+		</tr>
+		<tr>
+			<td><strong>Antal taxabonner:</strong></td>
+			<td>#SQL:getFieldValue(TEXT_ATTRIBUTE6).</td>
+		</tr>
+		<tr>
+			<td><strong>Chef:</strong></td>
+			<td>#SQL:getUserFullName(APPROVER1).</td>
+		</tr>
+	</tbody>
+</table>
+
+<p>&nbsp;</p>
+
+<p><a href="#SQL:getBlanketLink(BLANKET_ID).">Klik her for at se blanketten</a></p>
+
+<p><em>*** Blanketter kan kun tilg&aring;s via en DR Computer, der er p&aring; DRs net eller koblet p&aring; via VPN.***</em><br />
+<em>*** Dette er en autogenereret mail, og&nbsp;den kan ikke besvares. ***</em></p>
+
+<p>&nbsp;</p>]]></column>
+        <column name="mail_cc"/>
+        <column name="mail_from"/>
+        <column name="mail_subject"><![CDATA[Dine taxabonner er nu bestilt. (#SQL:getBlanketDescription(BLANKET_TYPE_ID).)]]></column>
+        <column name="mail_to"><![CDATA[FIELD:CREATED_BY]]></column>
+        <column name="new_status"><![CDATA[ORDERED]]></column>
+        <column name="next_user"><![CDATA[ROLE:TAXA]]></column>
+        <column name="postaction"/>
+        <column name="preaction"/>
+        <column name="status"><![CDATA[APPROVED]]></column>
+        <column name="updated_by"><![CDATA[XXBLANKET]]></column>
+        <column name="updated_date"><![CDATA[21-10-2022 14:53:24]]></column>
+      </row>
+      <row tablename="bl_action_process">
+        <column name="action"><![CDATA[APPROVE_COUPONS]]></column>
+        <column name="alt_text"/>
+        <column name="created_by"><![CDATA[XXBLANKET]]></column>
+        <column name="created_date"><![CDATA[22-03-2022 16:05:49]]></column>
+        <column name="flow_id"><![CDATA[20352]]></column>
+        <column name="flow_way"><![CDATA[Blanket godkendes af chef]]></column>
+        <column name="id"><![CDATA[20380]]></column>
+        <column name="mail_bcc"/>
+        <column name="mail_body"><![CDATA[<div class="ck-content"><h2>#SQL:getBlanketDescription(BLANKET_TYPE_ID).</h2><h2>Rekvirering af #SQL:getLookupValue(TEXT_ATTRIBUTE5).</h2><figure class="table"><table><tbody><tr><td><strong>Blanketnr.</strong>:</td><td>#SQL:getFieldValue(LBNR).</td></tr><tr><td><strong>Sendt dato</strong>:</td><td>#SQL:getFieldValue(CREATED_DATE).</td></tr><tr><td><strong>Oprettet af</strong>:</td><td>#SQL:getUserFullName(CREATED_BY).</td></tr><tr><td><strong>Afdeling (stednummer):</strong></td><td>#SQL:getFieldValue(TEXT_ATTRIBUTE1).</td></tr><tr><td><strong>Vedrører:</strong></td><td>#SQL:getUserFullName(REGARDING).</td></tr><tr><td><strong>Kontonummer:</strong></td><td>#SQL:getFieldValue(TEXT_ATTRIBUTE4).</td></tr><tr><td><strong>Antal taxabonner:</strong></td><td>#SQL:getFieldValue(TEXT_ATTRIBUTE6).</td></tr><tr><td><strong>Chef:</strong></td><td>#SQL:getUserFullName(APPROVER1).</td></tr></tbody></table></figure><p>&nbsp;</p><p>Eventuelle bemærkninger fra opretteren:</p><p>#SQL:getFieldValue(TEXT_ATTRIBUTE9).</p><p><a href="#SQL:getBlanketLink(BLANKET_ID).">Klik her for at se blanketten</a></p><p><i>*** Blanketter kan kun tilgås via en DR Computer, der er på DRs net eller koblet på via VPN.***</i><br><i>*** Dette er en autogenereret mail, og&nbsp;den kan ikke besvares. ***</i></p><p>&nbsp;</p></div>]]></column>
+        <column name="mail_cc"/>
+        <column name="mail_from"/>
+        <column name="mail_subject"><![CDATA[Du har modtaget en blanket til behandling (#SQL:getBlanketDescription(BLANKET_TYPE_ID).)]]></column>
+        <column name="mail_to"><![CDATA[ROLE:TAXA]]></column>
+        <column name="new_status"><![CDATA[APPROVED]]></column>
+        <column name="next_user"><![CDATA[ROLE:TAXA]]></column>
+        <column name="postaction"/>
+        <column name="preaction"/>
+        <column name="status"><![CDATA[CREATED]]></column>
+        <column name="updated_by"><![CDATA[RUJO]]></column>
+        <column name="updated_date"><![CDATA[09-10-2023 10:32:02]]></column>
+      </row>
+      <row tablename="bl_action_process">
+        <column name="action"><![CDATA[APPROVE_INVOICE_SPEC]]></column>
+        <column name="alt_text"/>
+        <column name="created_by"><![CDATA[XXBLANKET]]></column>
+        <column name="created_date"><![CDATA[22-03-2022 16:05:49]]></column>
+        <column name="flow_id"><![CDATA[20352]]></column>
+        <column name="flow_way"><![CDATA[Spec sendes til bestiller]]></column>
+        <column name="id"><![CDATA[20367]]></column>
+        <column name="mail_bcc"/>
+        <column name="mail_body"><![CDATA[<h2>#SQL:getBlanketDescription(BLANKET_TYPE_ID).</h2>
+
+<h2>Rekvirering af #SQL:getLookupValue(TEXT_ATTRIBUTE5).</h2>
+
+<table border="1" cellpadding="1" cellspacing="1">
+	<tbody>
+		<tr>
+			<td><strong>Blanketnr.</strong>:</td>
+			<td>#SQL:getFieldValue(LBNR).</td>
+		</tr>
+		<tr>
+			<td><strong>Sendt dato</strong>:</td>
+			<td>#SQL:getFieldValue(CREATED_DATE).</td>
+		</tr>
+		<tr>
+			<td><strong>Oprettet af</strong>:</td>
+			<td>#SQL:getUserFullName(CREATED_BY).</td>
+		</tr>
+		<tr>
+			<td><strong>Afdeling (stednummer):</strong></td>
+			<td>#SQL:getFieldValue(TEXT_ATTRIBUTE1).</td>
+		</tr>
+		<tr>
+			<td><strong>Kontonummer:</strong></td>
+			<td>#SQL:getFieldValue(TEXT_ATTRIBUTE4).</td>
+		</tr>
+		<tr>
+			<td><strong>Email:</strong></td>
+			<td>#SQL:getFieldValue(CREATED_BY,'LOWER').@dr.dk</td>
+		</tr>
+	</tbody>
+</table>
+
+<p>&nbsp;</p>
+
+<p><a href="#SQL:getBlanketLink(BLANKET_ID).">Klik her for at se blanketten</a></p>
+
+<p><em>*** Blanketter kan kun tilg&aring;s via en DR Computer, der er p&aring; DRs net eller koblet p&aring; via VPN.***</em><br />
+<em>*** Dette er en autogenereret mail, og&nbsp;den kan ikke besvares. ***</em></p>
+
+<p>&nbsp;</p>]]></column>
+        <column name="mail_cc"/>
+        <column name="mail_from"/>
+        <column name="mail_subject"><![CDATA[Din blanket er færdigbehandlet (#SQL:getBlanketDescription(BLANKET_TYPE_ID).)]]></column>
+        <column name="mail_to"><![CDATA[FIELD:CREATED_BY]]></column>
+        <column name="new_status"><![CDATA[PROCESSED]]></column>
+        <column name="next_user"><![CDATA[CREATED_BY]]></column>
+        <column name="postaction"/>
+        <column name="preaction"/>
+        <column name="status"><![CDATA[CREATED]]></column>
+        <column name="updated_by"><![CDATA[XXBLANKET]]></column>
+        <column name="updated_date"><![CDATA[21-10-2022 14:53:24]]></column>
+      </row>
+      <row tablename="bl_action_process">
+        <column name="action"><![CDATA[APPROVE_PERSONAL_CARD]]></column>
+        <column name="alt_text"/>
+        <column name="created_by"><![CDATA[XXBLANKET]]></column>
+        <column name="created_date"><![CDATA[22-03-2022 16:05:49]]></column>
+        <column name="flow_id"><![CDATA[20352]]></column>
+        <column name="flow_way"><![CDATA[Kort bestilles at kassen]]></column>
+        <column name="id"><![CDATA[20368]]></column>
+        <column name="mail_bcc"/>
+        <column name="mail_body"><![CDATA[<h2>#SQL:getBlanketDescription(BLANKET_TYPE_ID).</h2>
+
+<h2>Rekvirering af #SQL:getLookupValue(TEXT_ATTRIBUTE5).</h2>
+
+<table border="1" cellpadding="1" cellspacing="1">
+	<tbody>
+		<tr>
+			<td><strong>Blanketnr.</strong>:</td>
+			<td>#SQL:getFieldValue(LBNR).</td>
+		</tr>
+		<tr>
+			<td><strong>Sendt dato</strong>:</td>
+			<td>#SQL:getFieldValue(CREATED_DATE).</td>
+		</tr>
+		<tr>
+			<td><strong>Oprettet af</strong>:</td>
+			<td>#SQL:getUserFullName(CREATED_BY).</td>
+		</tr>
+		<tr>
+			<td><strong>Afdeling (stednummer):</strong></td>
+			<td>#SQL:getFieldValue(TEXT_ATTRIBUTE1).</td>
+		</tr>
+		<tr>
+			<td><strong>Vedr&oslash;rer:</strong></td>
+			<td>#SQL:getUserFullName(REGARDING).</td>
+		</tr>
+		<tr>
+			<td><strong>Efternavn p&aring; modtager:</strong></td>
+			<td>#SQL:getFieldValue(TEXT_ATTRIBUTE3).</td>
+		</tr>
+		<tr>
+			<td><strong>Fornavn p&aring; modtager:</strong></td>
+			<td>#SQL:getFieldValue(TEXT_ATTRIBUTE2).</td>
+		</tr>
+		<tr>
+			<td><strong>Kontonummer:</strong></td>
+			<td>#SQL:getFieldValue(TEXT_ATTRIBUTE4).</td>
+		</tr>
+		<tr>
+			<td><strong>Chef:</strong></td>
+			<td>#SQL:getUserFullName(APPROVER1).</td>
+		</tr>
+	</tbody>
+</table>
+
+<p>&nbsp;</p>
+
+<p><a href="#SQL:getBlanketLink(BLANKET_ID).">Klik her for at se blanketten</a></p>
+
+<p><em>*** Blanketter kan kun tilg&aring;s via en DR Computer, der er p&aring; DRs net eller koblet p&aring; via VPN.***</em><br />
+<em>*** Dette er en autogenereret mail, og&nbsp;den kan ikke besvares. ***</em></p>
+
+<p>&nbsp;</p>]]></column>
+        <column name="mail_cc"/>
+        <column name="mail_from"/>
+        <column name="mail_subject"><![CDATA[Dine taxakort er nu bestilt. (#SQL:getBlanketDescription(BLANKET_TYPE_ID).)]]></column>
+        <column name="mail_to"><![CDATA[FIELD:CREATED_BY]]></column>
+        <column name="new_status"><![CDATA[ORDERED]]></column>
+        <column name="next_user"><![CDATA[ROLE:TAXA]]></column>
+        <column name="postaction"/>
+        <column name="preaction"/>
+        <column name="status"><![CDATA[APPROVED]]></column>
+        <column name="updated_by"><![CDATA[XXBLANKET]]></column>
+        <column name="updated_date"><![CDATA[21-10-2022 14:53:24]]></column>
+      </row>
+      <row tablename="bl_action_process">
+        <column name="action"><![CDATA[APPROVE_PERSONAL_CARD]]></column>
+        <column name="alt_text"/>
+        <column name="created_by"><![CDATA[XXBLANKET]]></column>
+        <column name="created_date"><![CDATA[22-03-2022 16:05:49]]></column>
+        <column name="flow_id"><![CDATA[20352]]></column>
+        <column name="flow_way"><![CDATA[Blanket godkendes af chef]]></column>
+        <column name="id"><![CDATA[20355]]></column>
+        <column name="mail_bcc"/>
+        <column name="mail_body"><![CDATA[<div class="ck-content"><h2>#SQL:getBlanketDescription(BLANKET_TYPE_ID).</h2><h2>Rekvirering af #SQL:getLookupValue(TEXT_ATTRIBUTE5).</h2><figure class="table"><table><tbody><tr><td><strong>Blanketnr.</strong>:</td><td>#SQL:getFieldValue(LBNR).</td></tr><tr><td><strong>Sendt dato</strong>:</td><td>#SQL:getFieldValue(CREATED_DATE).</td></tr><tr><td><strong>Oprettet af</strong>:</td><td>#SQL:getUserFullName(CREATED_BY).</td></tr><tr><td><strong>Afdeling (stednummer):</strong></td><td>#SQL:getFieldValue(TEXT_ATTRIBUTE1).</td></tr><tr><td><strong>Vedrører:</strong></td><td>#SQL:getUserFullName(REGARDING).</td></tr><tr><td><strong>Efternavn på modtager:</strong></td><td>#SQL:getFieldValue(TEXT_ATTRIBUTE3).</td></tr><tr><td><strong>Fornavn på modtager:</strong></td><td>#SQL:getFieldValue(TEXT_ATTRIBUTE2).</td></tr><tr><td><strong>Kontonummer:</strong></td><td>#SQL:getFieldValue(TEXT_ATTRIBUTE4).</td></tr><tr><td><strong>Chef:</strong></td><td>#SQL:getUserFullName(APPROVER1).</td></tr></tbody></table></figure><p>&nbsp;</p><p>Eventuelle bemærkninger fra opretteren:</p><p>#SQL:getFieldValue(TEXT_ATTRIBUTE9).</p><p>&nbsp;</p><p><a href="#SQL:getBlanketLink(BLANKET_ID).">Klik her for at se blanketten</a></p><p><i>*** Blanketter kan kun tilgås via en DR Computer, der er på DRs net eller koblet på via VPN.***</i><br><i>*** Dette er en autogenereret mail, og&nbsp;den kan ikke besvares. ***</i></p><p>&nbsp;</p></div>]]></column>
+        <column name="mail_cc"/>
+        <column name="mail_from"/>
+        <column name="mail_subject"><![CDATA[Du har modtaget en blanket til behandling (#SQL:getBlanketDescription(BLANKET_TYPE_ID).)]]></column>
+        <column name="mail_to"><![CDATA[ROLE:TAXA]]></column>
+        <column name="new_status"><![CDATA[APPROVED]]></column>
+        <column name="next_user"><![CDATA[ROLE:TAXA]]></column>
+        <column name="postaction"/>
+        <column name="preaction"/>
+        <column name="status"><![CDATA[CREATED]]></column>
+        <column name="updated_by"><![CDATA[RUJO]]></column>
+        <column name="updated_date"><![CDATA[09-10-2023 10:32:02]]></column>
+      </row>
+      <row tablename="bl_action_process">
+        <column name="action"><![CDATA[CANCEL]]></column>
+        <column name="alt_text"/>
+        <column name="created_by"><![CDATA[XXBLANKET]]></column>
+        <column name="created_date"><![CDATA[22-03-2022 16:05:49]]></column>
+        <column name="flow_id"><![CDATA[20352]]></column>
+        <column name="flow_way"/>
+        <column name="id"><![CDATA[20357]]></column>
+        <column name="mail_bcc"/>
+        <column name="mail_body"><![CDATA[<p>none</p>]]></column>
+        <column name="mail_cc"/>
+        <column name="mail_from"/>
+        <column name="mail_subject"/>
+        <column name="mail_to"/>
+        <column name="new_status"><![CDATA[CANCELLED]]></column>
+        <column name="next_user"><![CDATA[NULL]]></column>
+        <column name="postaction"/>
+        <column name="preaction"/>
+        <column name="status"><![CDATA[REJECTED]]></column>
+        <column name="updated_by"><![CDATA[XXBLANKET]]></column>
+        <column name="updated_date"><![CDATA[21-10-2022 14:53:24]]></column>
+      </row>
+      <row tablename="bl_action_process">
+        <column name="action"><![CDATA[CREATE_COUPONS]]></column>
+        <column name="alt_text"/>
+        <column name="created_by"><![CDATA[XXBLANKET]]></column>
+        <column name="created_date"><![CDATA[22-03-2022 16:05:49]]></column>
+        <column name="flow_id"><![CDATA[20352]]></column>
+        <column name="flow_way"><![CDATA[Blanket oprettes]]></column>
+        <column name="id"><![CDATA[20360]]></column>
+        <column name="mail_bcc"/>
+        <column name="mail_body"><![CDATA[<h2>#SQL:getBlanketDescription(BLANKET_TYPE_ID).</h2>
+
+<h2>Rekvirering af #SQL:getLookupValue(TEXT_ATTRIBUTE5).</h2>
+
+<table border="1" cellpadding="1" cellspacing="1">
+	<tbody>
+		<tr>
+			<td><strong>Blanketnr.</strong>:</td>
+			<td>#SQL:getFieldValue(LBNR).</td>
+		</tr>
+		<tr>
+			<td><strong>Sendt dato</strong>:</td>
+			<td>#SQL:getFieldValue(CREATED_DATE).</td>
+		</tr>
+		<tr>
+			<td><strong>Oprettet af</strong>:</td>
+			<td>#SQL:getUserFullName(CREATED_BY).</td>
+		</tr>
+		<tr>
+			<td><strong>Afdeling (stednummer):</strong></td>
+			<td>#SQL:getFieldValue(TEXT_ATTRIBUTE1).</td>
+		</tr>
+		<tr>
+			<td><strong>Vedr&oslash;rer:</strong></td>
+			<td>#SQL:getUserFullName(REGARDING).</td>
+		</tr>
+		<tr>
+			<td><strong>Kontonummer:</strong></td>
+			<td>#SQL:getFieldValue(TEXT_ATTRIBUTE4).</td>
+		</tr>
+		<tr>
+			<td><strong>Antal taxabonner:</strong></td>
+			<td>#SQL:getFieldValue(TEXT_ATTRIBUTE6).</td>
+		</tr>
+		<tr>
+			<td><strong>Chef:</strong></td>
+			<td>#SQL:getUserFullName(APPROVER1).</td>
+		</tr>
+	</tbody>
+</table>
+
+<p>&nbsp;</p>
+
+<p><a href="#SQL:getBlanketLink(BLANKET_ID).">Klik her for at se blanketten</a></p>
+
+<p><em>*** Blanketter kan kun tilg&aring;s via en DR Computer, der er p&aring; DRs net eller koblet p&aring; via VPN.***</em><br />
+<em>*** Dette er en autogenereret mail, og&nbsp;den kan ikke besvares. ***</em></p>
+
+<p>&nbsp;</p>]]></column>
+        <column name="mail_cc"/>
+        <column name="mail_from"/>
+        <column name="mail_subject"><![CDATA[Du har modtaget en blanket til behandling (#SQL:getBlanketDescription(BLANKET_TYPE_ID).)]]></column>
+        <column name="mail_to"><![CDATA[FIELD:APPROVER1]]></column>
+        <column name="new_status"><![CDATA[CREATED]]></column>
+        <column name="next_user"><![CDATA[APPROVER1]]></column>
+        <column name="postaction"/>
+        <column name="preaction"/>
+        <column name="status"><![CDATA[NEW]]></column>
+        <column name="updated_by"><![CDATA[XXBLANKET]]></column>
+        <column name="updated_date"><![CDATA[22-03-2022 16:05:49]]></column>
+      </row>
+      <row tablename="bl_action_process">
+        <column name="action"><![CDATA[CREATE_INVOICE_SPEC]]></column>
+        <column name="alt_text"/>
+        <column name="created_by"><![CDATA[XXBLANKET]]></column>
+        <column name="created_date"><![CDATA[22-03-2022 16:05:49]]></column>
+        <column name="flow_id"><![CDATA[20352]]></column>
+        <column name="flow_way"><![CDATA[Blanket oprettes]]></column>
+        <column name="id"><![CDATA[20361]]></column>
+        <column name="mail_bcc"/>
+        <column name="mail_body"><![CDATA[<div class="ck-content"><h2>#SQL:getBlanketDescription(BLANKET_TYPE_ID).</h2><h2>Rekvirering af #SQL:getLookupValue(TEXT_ATTRIBUTE5).</h2><figure class="table"><table><tbody><tr><td><strong>Blanketnr.</strong>:</td><td>#SQL:getFieldValue(LBNR).</td></tr><tr><td><strong>Sendt dato</strong>:</td><td>#SQL:getFieldValue(CREATED_DATE).</td></tr><tr><td><strong>Oprettet af</strong>:</td><td>#SQL:getUserFullName(CREATED_BY).</td></tr><tr><td><strong>Afdeling (stednummer):</strong></td><td>#SQL:getFieldValue(TEXT_ATTRIBUTE1).</td></tr><tr><td><strong>Kontonummer:</strong></td><td>#SQL:getFieldValue(TEXT_ATTRIBUTE4).</td></tr><tr><td><strong>Email:</strong></td><td>#SQL:getFieldValue(CREATED_BY,'LOWER').@dr.dk</td></tr></tbody></table></figure><p>&nbsp;</p><p>&nbsp;</p><p>Eventuelle bemærkninger fra opretteren:</p><p>#SQL:getFieldValue(TEXT_ATTRIBUTE9).</p><p>&nbsp;</p><p><a href="#SQL:getBlanketLink(BLANKET_ID).">Klik her for at se blanketten</a></p><p><i>*** Blanketter kan kun tilgås via en DR Computer, der er på DRs net eller koblet på via VPN.***</i><br><i>*** Dette er en autogenereret mail, og&nbsp;den kan ikke besvares. ***</i></p><p>&nbsp;</p></div>]]></column>
+        <column name="mail_cc"/>
+        <column name="mail_from"/>
+        <column name="mail_subject"><![CDATA[Du har modtaget en blanket til behandling (#SQL:getBlanketDescription(BLANKET_TYPE_ID).)]]></column>
+        <column name="mail_to"><![CDATA[ROLE:TAXA,FIELD:CREATED_BY]]></column>
+        <column name="new_status"><![CDATA[CREATED]]></column>
+        <column name="next_user"><![CDATA[ROLE:TAXA]]></column>
+        <column name="postaction"/>
+        <column name="preaction"/>
+        <column name="status"><![CDATA[NEW]]></column>
+        <column name="updated_by"><![CDATA[RUJO]]></column>
+        <column name="updated_date"><![CDATA[06-10-2023 15:19:19]]></column>
+      </row>
+      <row tablename="bl_action_process">
+        <column name="action"><![CDATA[CREATE_PERSONAL_CARD]]></column>
+        <column name="alt_text"/>
+        <column name="created_by"><![CDATA[XXBLANKET]]></column>
+        <column name="created_date"><![CDATA[22-03-2022 16:05:49]]></column>
+        <column name="flow_id"><![CDATA[20352]]></column>
+        <column name="flow_way"><![CDATA[Blanket oprettes]]></column>
+        <column name="id"><![CDATA[20353]]></column>
+        <column name="mail_bcc"/>
+        <column name="mail_body"><![CDATA[<h2>#SQL:getBlanketDescription(BLANKET_TYPE_ID).</h2>
+
+<h2>Rekvirering af #SQL:getLookupValue(TEXT_ATTRIBUTE5).</h2>
+
+<table border="1" cellpadding="1" cellspacing="1">
+	<tbody>
+		<tr>
+			<td><strong>Blanketnr.</strong>:</td>
+			<td>#SQL:getFieldValue(LBNR).</td>
+		</tr>
+		<tr>
+			<td><strong>Sendt dato</strong>:</td>
+			<td>#SQL:getFieldValue(CREATED_DATE).</td>
+		</tr>
+		<tr>
+			<td><strong>Oprettet af</strong>:</td>
+			<td>#SQL:getUserFullName(CREATED_BY).</td>
+		</tr>
+		<tr>
+			<td><strong>Afdeling (stednummer):</strong></td>
+			<td>#SQL:getFieldValue(TEXT_ATTRIBUTE1).</td>
+		</tr>
+		<tr>
+			<td><strong>Vedr&oslash;rer:</strong></td>
+			<td>#SQL:getUserFullName(REGARDING).</td>
+		</tr>
+		<tr>
+			<td><strong>Efternavn p&aring; modtager:</strong></td>
+			<td>#SQL:getFieldValue(TEXT_ATTRIBUTE3).</td>
+		</tr>
+		<tr>
+			<td><strong>Fornavn p&aring; modtager:</strong></td>
+			<td>#SQL:getFieldValue(TEXT_ATTRIBUTE2).</td>
+		</tr>
+		<tr>
+			<td><strong>Kontonummer:</strong></td>
+			<td>#SQL:getFieldValue(TEXT_ATTRIBUTE4).</td>
+		</tr>
+		<tr>
+			<td><strong>Chef:</strong></td>
+			<td>#SQL:getUserFullName(APPROVER1).</td>
+		</tr>
+	</tbody>
+</table>
+
+<p>&nbsp;</p>
+
+<p><a href="#SQL:getBlanketLink(BLANKET_ID).">Klik her for at se blanketten</a></p>
+
+<p><em>*** Blanketter kan kun tilg&aring;s via en DR Computer, der er p&aring; DRs net eller koblet p&aring; via VPN.***</em><br />
+<em>*** Dette er en autogenereret mail, og&nbsp;den kan ikke besvares. ***</em></p>
+
+<p>&nbsp;</p>]]></column>
+        <column name="mail_cc"/>
+        <column name="mail_from"/>
+        <column name="mail_subject"><![CDATA[Du har modtaget en blanket til behandling (#SQL:getBlanketDescription(BLANKET_TYPE_ID).)]]></column>
+        <column name="mail_to"><![CDATA[FIELD:APPROVER1]]></column>
+        <column name="new_status"><![CDATA[CREATED]]></column>
+        <column name="next_user"><![CDATA[APPROVER1]]></column>
+        <column name="postaction"/>
+        <column name="preaction"/>
+        <column name="status"><![CDATA[NEW]]></column>
+        <column name="updated_by"><![CDATA[XXBLANKET]]></column>
+        <column name="updated_date"><![CDATA[21-10-2022 14:53:24]]></column>
+      </row>
+      <row tablename="bl_action_process">
+        <column name="action"><![CDATA[RECEIVED_COUPONS]]></column>
+        <column name="alt_text"/>
+        <column name="created_by"><![CDATA[XXBLANKET]]></column>
+        <column name="created_date"><![CDATA[22-03-2022 16:05:50]]></column>
+        <column name="flow_id"><![CDATA[20352]]></column>
+        <column name="flow_way"><![CDATA[Bestiller kvitterer for modtagelse]]></column>
+        <column name="id"><![CDATA[20874]]></column>
+        <column name="mail_bcc"/>
+        <column name="mail_body"><![CDATA[<h2>#SQL:getBlanketDescription(BLANKET_TYPE_ID).</h2>
+
+<h2>Rekvirering af #SQL:getLookupValue(TEXT_ATTRIBUTE5).</h2>
+
+<table border="1" cellpadding="1" cellspacing="1">
+	<tbody>
+		<tr>
+			<td><strong>Blanketnr.</strong>:</td>
+			<td>#SQL:getFieldValue(LBNR).</td>
+		</tr>
+		<tr>
+			<td><strong>Sendt dato</strong>:</td>
+			<td>#SQL:getFieldValue(CREATED_DATE).</td>
+		</tr>
+		<tr>
+			<td><strong>Oprettet af</strong>:</td>
+			<td>#SQL:getUserFullName(CREATED_BY).</td>
+		</tr>
+		<tr>
+			<td><strong>Afdeling (stednummer):</strong></td>
+			<td>#SQL:getFieldValue(TEXT_ATTRIBUTE1).</td>
+		</tr>
+		<tr>
+			<td><strong>Vedr&oslash;rer:</strong></td>
+			<td>#SQL:getUserFullName(REGARDING).</td>
+		</tr>
+		<tr>
+			<td><strong>Kontonummer:</strong></td>
+			<td>#SQL:getFieldValue(TEXT_ATTRIBUTE4).</td>
+		</tr>
+		<tr>
+			<td><strong>Antal taxabonner:</strong></td>
+			<td>#SQL:getFieldValue(TEXT_ATTRIBUTE6).</td>
+		</tr>
+		<tr>
+			<td><strong>Chef:</strong></td>
+			<td>#SQL:getUserFullName(APPROVER1).</td>
+		</tr>
+	</tbody>
+</table>
+
+<p>&nbsp;</p>
+
+<p><a href="#SQL:getBlanketLink(BLANKET_ID).">Klik her for at se blanketten</a></p>
+
+<p><em>*** Blanketter kan kun tilg&aring;s via en DR Computer, der er p&aring; DRs net eller koblet p&aring; via VPN.***</em><br />
+<em>*** Dette er en autogenereret mail, og&nbsp;den kan ikke besvares. ***</em></p>
+
+<p>&nbsp;</p>]]></column>
+        <column name="mail_cc"/>
+        <column name="mail_from"/>
+        <column name="mail_subject"><![CDATA[Bestiller af taxabonner har kvitteret for modtagelse]]></column>
+        <column name="mail_to"><![CDATA[ROLE:TAXA]]></column>
+        <column name="new_status"><![CDATA[PROCESSED]]></column>
+        <column name="next_user"><![CDATA[NULL]]></column>
+        <column name="postaction"/>
+        <column name="preaction"/>
+        <column name="status"><![CDATA[ARRIVED]]></column>
+        <column name="updated_by"><![CDATA[XXBLANKET]]></column>
+        <column name="updated_date"><![CDATA[21-10-2022 14:53:24]]></column>
+      </row>
+      <row tablename="bl_action_process">
+        <column name="action"><![CDATA[RECEIVED_COUPONS]]></column>
+        <column name="alt_text"/>
+        <column name="created_by"><![CDATA[XXBLANKET]]></column>
+        <column name="created_date"><![CDATA[22-03-2022 16:05:50]]></column>
+        <column name="flow_id"><![CDATA[20352]]></column>
+        <column name="flow_way"><![CDATA[Kassen har modtaget bonner]]></column>
+        <column name="id"><![CDATA[20873]]></column>
+        <column name="mail_bcc"/>
+        <column name="mail_body"><![CDATA[<h2>#SQL:getBlanketDescription(BLANKET_TYPE_ID).</h2>
+
+<h2>Rekvirering af #SQL:getLookupValue(TEXT_ATTRIBUTE5).</h2>
+
+<table border="1" cellpadding="1" cellspacing="1">
+	<tbody>
+		<tr>
+			<td><strong>Blanketnr.</strong>:</td>
+			<td>#SQL:getFieldValue(LBNR).</td>
+		</tr>
+		<tr>
+			<td><strong>Sendt dato</strong>:</td>
+			<td>#SQL:getFieldValue(CREATED_DATE).</td>
+		</tr>
+		<tr>
+			<td><strong>Oprettet af</strong>:</td>
+			<td>#SQL:getUserFullName(CREATED_BY).</td>
+		</tr>
+		<tr>
+			<td><strong>Afdeling (stednummer):</strong></td>
+			<td>#SQL:getFieldValue(TEXT_ATTRIBUTE1).</td>
+		</tr>
+		<tr>
+			<td><strong>Vedr&oslash;rer:</strong></td>
+			<td>#SQL:getUserFullName(REGARDING).</td>
+		</tr>
+		<tr>
+			<td><strong>Kontonummer:</strong></td>
+			<td>#SQL:getFieldValue(TEXT_ATTRIBUTE4).</td>
+		</tr>
+		<tr>
+			<td><strong>Antal taxabonner:</strong></td>
+			<td>#SQL:getFieldValue(TEXT_ATTRIBUTE6).</td>
+		</tr>
+		<tr>
+			<td><strong>Chef:</strong></td>
+			<td>#SQL:getUserFullName(APPROVER1).</td>
+		</tr>
+	</tbody>
+</table>
+
+<p>&nbsp;</p>
+
+<p><a href="#SQL:getBlanketLink(BLANKET_ID).">Klik her for at se blanketten</a></p>
+
+<p><em>*** Blanketter kan kun tilg&aring;s via en DR Computer, der er p&aring; DRs net eller koblet p&aring; via VPN.***</em><br />
+<em>*** Dette er en autogenereret mail, og&nbsp;den kan ikke besvares. ***</em></p>
+
+<p>&nbsp;</p>]]></column>
+        <column name="mail_cc"/>
+        <column name="mail_from"/>
+        <column name="mail_subject"><![CDATA[Dine taxabonner er ankommet og kan afhentes i ØSC Opg. 1-1]]></column>
+        <column name="mail_to"><![CDATA[FIELD:CREATED_BY]]></column>
+        <column name="new_status"><![CDATA[ARRIVED]]></column>
+        <column name="next_user"><![CDATA[REGARDING]]></column>
+        <column name="postaction"/>
+        <column name="preaction"/>
+        <column name="status"><![CDATA[ORDERED]]></column>
+        <column name="updated_by"><![CDATA[XXBLANKET]]></column>
+        <column name="updated_date"><![CDATA[21-10-2022 14:53:24]]></column>
+      </row>
+      <row tablename="bl_action_process">
+        <column name="action"><![CDATA[RECEIVED_PERSONAL_CARD]]></column>
+        <column name="alt_text"/>
+        <column name="created_by"><![CDATA[XXBLANKET]]></column>
+        <column name="created_date"><![CDATA[22-03-2022 16:05:50]]></column>
+        <column name="flow_id"><![CDATA[20352]]></column>
+        <column name="flow_way"><![CDATA[Bestiller kvitterer for modtagelse]]></column>
+        <column name="id"><![CDATA[20875]]></column>
+        <column name="mail_bcc"/>
+        <column name="mail_body"><![CDATA[<h2>#SQL:getBlanketDescription(BLANKET_TYPE_ID).</h2>
+
+<h2>Rekvirering af #SQL:getLookupValue(TEXT_ATTRIBUTE5).</h2>
+
+<table border="1" cellpadding="1" cellspacing="1">
+	<tbody>
+		<tr>
+			<td><strong>Blanketnr.</strong>:</td>
+			<td>#SQL:getFieldValue(LBNR).</td>
+		</tr>
+		<tr>
+			<td><strong>Sendt dato</strong>:</td>
+			<td>#SQL:getFieldValue(CREATED_DATE).</td>
+		</tr>
+		<tr>
+			<td><strong>Oprettet af</strong>:</td>
+			<td>#SQL:getUserFullName(CREATED_BY).</td>
+		</tr>
+		<tr>
+			<td><strong>Afdeling (stednummer):</strong></td>
+			<td>#SQL:getFieldValue(TEXT_ATTRIBUTE1).</td>
+		</tr>
+		<tr>
+			<td><strong>Vedr&oslash;rer:</strong></td>
+			<td>#SQL:getUserFullName(REGARDING).</td>
+		</tr>
+		<tr>
+			<td><strong>Efternavn p&aring; modtager:</strong></td>
+			<td>#SQL:getFieldValue(TEXT_ATTRIBUTE3).</td>
+		</tr>
+		<tr>
+			<td><strong>Fornavn p&aring; modtager:</strong></td>
+			<td>#SQL:getFieldValue(TEXT_ATTRIBUTE2).</td>
+		</tr>
+		<tr>
+			<td><strong>Kontonummer:</strong></td>
+			<td>#SQL:getFieldValue(TEXT_ATTRIBUTE4).</td>
+		</tr>
+		<tr>
+			<td><strong>Chef:</strong></td>
+			<td>#SQL:getUserFullName(APPROVER1).</td>
+		</tr>
+	</tbody>
+</table>
+
+<p>&nbsp;</p>
+
+<p><strong><span style="font-size:16px">Modtageren af betalingskort har ved fremsendelse af denne mail accepteret nedenst&aring;ende tro- og love erkl&aelig;ring.</span></strong></p>
+
+<table border="1" cellpadding="1" cellspacing="1">
+	<tbody>
+		<tr>
+			<td>
+			<p><strong><em>Tro- og love erkl&aelig;ring vedr. pers. betalingskort til Dantaxi</em></strong></p>
+
+			<p>&nbsp;</p>
+
+			<p>Taxakortet er med firmah&aelig;ftelse og m&aring; ikke anvendes til private form&aring;l.</p>
+
+			<p>Kortet er personligt og det er kortholder, der er ansvarlig for alle k&oslash;rsler, hvor kortet er anvendt som betalingsmiddel.</p>
+
+			<p>Det g&aelig;lder dog ikke for andres uberettigede anvendelse af kortet, f.eks. i forbindelse med tab, tyveri. I tilf&aelig;lde af taxakortets bortkomst skal kortholder straks give meddelelse herom til Finansteamet i &Oslash;SC eller alternativt ringe til Dantaxi p&aring; 4x48 og melde det stj&aring;let og s&aring; sende en e-mail til taxa@dr.dk om, at det er annulleret. Der vil ogs&aring; skulle oprettes en ny bestilling i blanketsystemet, hvis der er behov for et nyt kort.</p>
+
+			<p>Kortholder er forpligtet til at overholde DRs retningslinjer for afregning til enhver tid, herunder dokumentationskrav.</p>
+
+			<p>Hvis ans&aelig;ttelsesforholdet oph&oslash;rer, skal taxakortet afleveres til Finansteamet i &Oslash;SC senest sidste arbejdsdag i DR.</p>
+
+			<p><strong>Ved tryk p&aring; knappen &rdquo;Modtaget&rdquo;, kvitteres for modtagelsen af det personlige kort samt ovenst&aring;ende betingelser for anvendelse af kortet</strong></p>
+			</td>
+		</tr>
+	</tbody>
+</table>
+
+<p>&nbsp;</p>
+
+<p><a href="#SQL:getBlanketLink(BLANKET_ID).">Klik her for at se blanketten</a></p>
+
+<p><em>*** Blanketter kan kun tilg&aring;s via en DR Computer, der er p&aring; DRs net eller koblet p&aring; via VPN.***</em><br />
+<em>*** Dette er en autogenereret mail, og&nbsp;den kan ikke besvares. ***</em></p>
+
+<p>&nbsp;</p>]]></column>
+        <column name="mail_cc"/>
+        <column name="mail_from"/>
+        <column name="mail_subject"><![CDATA[Bestiller af taxakort har nu kvitteret for modtagelse]]></column>
+        <column name="mail_to"><![CDATA[ROLE:TAXA,FIELD:REGARDING]]></column>
+        <column name="new_status"><![CDATA[PROCESSED]]></column>
+        <column name="next_user"><![CDATA[NULL]]></column>
+        <column name="postaction"/>
+        <column name="preaction"/>
+        <column name="status"><![CDATA[ARRIVED]]></column>
+        <column name="updated_by"><![CDATA[XXBLANKET]]></column>
+        <column name="updated_date"><![CDATA[21-10-2022 14:53:24]]></column>
+      </row>
+      <row tablename="bl_action_process">
+        <column name="action"><![CDATA[RECEIVED_PERSONAL_CARD]]></column>
+        <column name="alt_text"/>
+        <column name="created_by"><![CDATA[XXBLANKET]]></column>
+        <column name="created_date"><![CDATA[22-03-2022 16:05:50]]></column>
+        <column name="flow_id"><![CDATA[20352]]></column>
+        <column name="flow_way"><![CDATA[Kassen har modtaget kort]]></column>
+        <column name="id"><![CDATA[20872]]></column>
+        <column name="mail_bcc"/>
+        <column name="mail_body"><![CDATA[<h2>#SQL:getBlanketDescription(BLANKET_TYPE_ID).</h2>
+
+<h2>Rekvirering af #SQL:getLookupValue(TEXT_ATTRIBUTE5).</h2>
+
+<table border="1" cellpadding="1" cellspacing="1">
+	<tbody>
+		<tr>
+			<td><strong>Blanketnr.</strong>:</td>
+			<td>#SQL:getFieldValue(LBNR).</td>
+		</tr>
+		<tr>
+			<td><strong>Sendt dato</strong>:</td>
+			<td>#SQL:getFieldValue(CREATED_DATE).</td>
+		</tr>
+		<tr>
+			<td><strong>Oprettet af</strong>:</td>
+			<td>#SQL:getUserFullName(CREATED_BY).</td>
+		</tr>
+		<tr>
+			<td><strong>Afdeling (stednummer):</strong></td>
+			<td>#SQL:getFieldValue(TEXT_ATTRIBUTE1).</td>
+		</tr>
+		<tr>
+			<td><strong>Vedr&oslash;rer:</strong></td>
+			<td>#SQL:getUserFullName(REGARDING).</td>
+		</tr>
+		<tr>
+			<td><strong>Efternavn p&aring; modtager:</strong></td>
+			<td>#SQL:getFieldValue(TEXT_ATTRIBUTE3).</td>
+		</tr>
+		<tr>
+			<td><strong>Fornavn p&aring; modtager:</strong></td>
+			<td>#SQL:getFieldValue(TEXT_ATTRIBUTE2).</td>
+		</tr>
+		<tr>
+			<td><strong>Kontonummer:</strong></td>
+			<td>#SQL:getFieldValue(TEXT_ATTRIBUTE4).</td>
+		</tr>
+		<tr>
+			<td><strong>Chef:</strong></td>
+			<td>#SQL:getUserFullName(APPROVER1).</td>
+		</tr>
+	</tbody>
+</table>
+
+<p>&nbsp;</p>
+
+<p><a href="#SQL:getBlanketLink(BLANKET_ID).">Klik her for at se blanketten</a></p>
+
+<p><em>*** Blanketter kan kun tilg&aring;s via en DR Computer, der er p&aring; DRs net eller koblet p&aring; via VPN.***</em><br />
+<em>*** Dette er en autogenereret mail, og&nbsp;den kan ikke besvares. ***</em></p>
+
+<p>&nbsp;</p>]]></column>
+        <column name="mail_cc"/>
+        <column name="mail_from"><![CDATA[-]]></column>
+        <column name="mail_subject"><![CDATA[Dit taxakort er ankommet og kan afhentes i ØSC Opg. 1-1]]></column>
+        <column name="mail_to"><![CDATA[FIELD:REGARDING,FIELD:CREATED_BY]]></column>
+        <column name="new_status"><![CDATA[ARRIVED]]></column>
+        <column name="next_user"><![CDATA[REGARDING]]></column>
+        <column name="postaction"/>
+        <column name="preaction"/>
+        <column name="status"><![CDATA[ORDERED]]></column>
+        <column name="updated_by"><![CDATA[XXBLANKET]]></column>
+        <column name="updated_date"><![CDATA[21-10-2022 14:53:24]]></column>
+      </row>
+      <row tablename="bl_action_process">
+        <column name="action"><![CDATA[REJECT]]></column>
+        <column name="alt_text"/>
+        <column name="created_by"><![CDATA[XXBLANKET]]></column>
+        <column name="created_date"><![CDATA[22-03-2022 16:05:49]]></column>
+        <column name="flow_id"><![CDATA[20352]]></column>
+        <column name="flow_way"><![CDATA[Kassen afviser blanket]]></column>
+        <column name="id"><![CDATA[20374]]></column>
+        <column name="mail_bcc"/>
+        <column name="mail_body"><![CDATA[<h2>#SQL:getBlanketDescription(BLANKET_TYPE_ID).</h2>
+    <h3>Note ved afvisning</h3>
+    <p>@SQL:xxdr_mail_table.getlatestrejectmail(BLANKET_ID) @</p>
+
+<h2>Rekvirering af #SQL:getLookupValue(TEXT_ATTRIBUTE5).</h2>
+
+<table border="1" cellpadding="1" cellspacing="1">
+	<tbody>
+		<tr>
+			<td><strong>Blanketnr.</strong>:</td>
+			<td>#SQL:getFieldValue(LBNR).</td>
+		</tr>
+		<tr>
+			<td><strong>Sendt dato</strong>:</td>
+			<td>#SQL:getFieldValue(CREATED_DATE).</td>
+		</tr>
+		<tr>
+			<td><strong>Oprettet af</strong>:</td>
+			<td>#SQL:getUserFullName(CREATED_BY).</td>
+		</tr>
+		<tr>
+			<td><strong>Afdeling (stednummer):</strong></td>
+			<td>#SQL:getFieldValue(TEXT_ATTRIBUTE1).</td>
+		</tr>
+		<tr>
+			<td><strong>Vedr&oslash;rer:</strong></td>
+			<td>#SQL:getUserFullName(REGARDING).</td>
+		</tr>
+	</tbody>
+</table>
+
+<p>&nbsp;</p>
+
+<p><a href="#SQL:getBlanketLink(BLANKET_ID).">Klik her for at se blanketten</a></p>
+
+<p><em>*** Blanketter kan kun tilg&aring;s via en DR Computer, der er p&aring; DRs net eller koblet p&aring; via VPN.***</em><br />
+<em>*** Dette er en autogenereret mail, og&nbsp;den kan ikke besvares. ***</em></p>
+
+<p>&nbsp;</p>]]></column>
+        <column name="mail_cc"/>
+        <column name="mail_from"/>
+        <column name="mail_subject"><![CDATA[Din blanket er afvist (#SQL:getBlanketDescription(BLANKET_TYPE_ID).)]]></column>
+        <column name="mail_to"><![CDATA[FIELD:CREATED_BY]]></column>
+        <column name="new_status"><![CDATA[REJECTED]]></column>
+        <column name="next_user"><![CDATA[CREATED_BY]]></column>
+        <column name="postaction"/>
+        <column name="preaction"/>
+        <column name="status"><![CDATA[APPROVED]]></column>
+        <column name="updated_by"><![CDATA[XXBLANKET]]></column>
+        <column name="updated_date"><![CDATA[06-06-2023 14:20:32]]></column>
+      </row>
+      <row tablename="bl_action_process">
+        <column name="action"><![CDATA[REJECT]]></column>
+        <column name="alt_text"/>
+        <column name="created_by"><![CDATA[XXBLANKET]]></column>
+        <column name="created_date"><![CDATA[22-03-2022 16:05:49]]></column>
+        <column name="flow_id"><![CDATA[20352]]></column>
+        <column name="flow_way"><![CDATA[Chef afviser blanket]]></column>
+        <column name="id"><![CDATA[20356]]></column>
+        <column name="mail_bcc"/>
+        <column name="mail_body"><![CDATA[<h2>#SQL:getBlanketDescription(BLANKET_TYPE_ID).</h2>
+
+<h2>Rekvirering af #SQL:getLookupValue(TEXT_ATTRIBUTE5).</h2>
+
+<h3>Note ved afvisning:</h3>
+<p><i>@SQL:xxdr_mail_table.getlatestrejectmail(BLANKET_ID) @</i></p>
+
+<table border="1" cellpadding="1" cellspacing="1">
+	<tbody>
+		<tr>
+			<td><strong>Blanketnr.</strong>:</td>
+			<td>#SQL:getFieldValue(LBNR).</td>
+		</tr>
+		<tr>
+			<td><strong>Sendt dato</strong>:</td>
+			<td>#SQL:getFieldValue(CREATED_DATE).</td>
+		</tr>
+		<tr>
+			<td><strong>Oprettet af</strong>:</td>
+			<td>#SQL:getUserFullName(CREATED_BY).</td>
+		</tr>
+		<tr>
+			<td><strong>Afdeling (stednummer):</strong></td>
+			<td>#SQL:getFieldValue(TEXT_ATTRIBUTE1).</td>
+		</tr>
+		<tr>
+			<td><strong>Vedr&oslash;rer:</strong></td>
+			<td>#SQL:getUserFullName(REGARDING).</td>
+		</tr>
+	</tbody>
+</table>
+
+<p>&nbsp;</p>
+
+<p><a href="#SQL:getBlanketLink(BLANKET_ID).">Klik her for at se blanketten</a></p>
+
+<p><em>*** Blanketter kan kun tilg&aring;s via en DR Computer, der er p&aring; DRs net eller koblet p&aring; via VPN.***</em><br />
+<em>*** Dette er en autogenereret mail, og&nbsp;den kan ikke besvares. ***</em></p>
+
+<p>&nbsp;</p>]]></column>
+        <column name="mail_cc"/>
+        <column name="mail_from"/>
+        <column name="mail_subject"><![CDATA[Din blanket er afvist (#SQL:getBlanketDescription(BLANKET_TYPE_ID).)]]></column>
+        <column name="mail_to"><![CDATA[FIELD:CREATED_BY]]></column>
+        <column name="new_status"><![CDATA[REJECTED]]></column>
+        <column name="next_user"><![CDATA[CREATED_BY]]></column>
+        <column name="postaction"/>
+        <column name="preaction"/>
+        <column name="status"><![CDATA[CREATED]]></column>
+        <column name="updated_by"><![CDATA[XXBLANKET]]></column>
+        <column name="updated_date"><![CDATA[06-06-2023 14:20:32]]></column>
+      </row>
+      <row tablename="bl_action_process">
+        <column name="action"><![CDATA[REJECT]]></column>
+        <column name="alt_text"/>
+        <column name="created_by"><![CDATA[XXBLANKET]]></column>
+        <column name="created_date"><![CDATA[22-03-2022 16:05:50]]></column>
+        <column name="flow_id"><![CDATA[20352]]></column>
+        <column name="flow_way"><![CDATA[Kassen afviser blanket]]></column>
+        <column name="id"><![CDATA[20876]]></column>
+        <column name="mail_bcc"/>
+        <column name="mail_body"><![CDATA[<h2>#SQL:getBlanketDescription(BLANKET_TYPE_ID).</h2>
+
+<h2>Rekvirering af #SQL:getLookupValue(TEXT_ATTRIBUTE5).</h2>
+
+<h3>Note ved afvisning:</h3>
+<p><i>@SQL:xxdr_mail_table.getlatestrejectmail(BLANKET_ID) @</i></p>
+
+<table border="1" cellpadding="1" cellspacing="1">
+	<tbody>
+		<tr>
+			<td><strong>Blanketnr.</strong>:</td>
+			<td>#SQL:getFieldValue(LBNR).</td>
+		</tr>
+		<tr>
+			<td><strong>Sendt dato</strong>:</td>
+			<td>#SQL:getFieldValue(CREATED_DATE).</td>
+		</tr>
+		<tr>
+			<td><strong>Oprettet af</strong>:</td>
+			<td>#SQL:getUserFullName(CREATED_BY).</td>
+		</tr>
+		<tr>
+			<td><strong>Afdeling (stednummer):</strong></td>
+			<td>#SQL:getFieldValue(TEXT_ATTRIBUTE1).</td>
+		</tr>
+		<tr>
+			<td><strong>Vedr&oslash;rer:</strong></td>
+			<td>#SQL:getUserFullName(REGARDING).</td>
+		</tr>
+	</tbody>
+</table>
+
+<p>&nbsp;</p>
+
+<p><a href="#SQL:getBlanketLink(BLANKET_ID).">Klik her for at se blanketten</a></p>
+
+<p><em>*** Blanketter kan kun tilg&aring;s via en DR Computer, der er p&aring; DRs net eller koblet p&aring; via VPN.***</em><br />
+<em>*** Dette er en autogenereret mail, og&nbsp;den kan ikke besvares. ***</em></p>
+
+<p>&nbsp;</p>]]></column>
+        <column name="mail_cc"/>
+        <column name="mail_from"/>
+        <column name="mail_subject"><![CDATA[Din blanket er afvist (#SQL:getBlanketDescription(BLANKET_TYPE_ID).)]]></column>
+        <column name="mail_to"><![CDATA[FIELD:CREATED_BY]]></column>
+        <column name="new_status"><![CDATA[REJECTED]]></column>
+        <column name="next_user"><![CDATA[CREATED_BY]]></column>
+        <column name="postaction"/>
+        <column name="preaction"/>
+        <column name="status"><![CDATA[ORDERED]]></column>
+        <column name="updated_by"><![CDATA[XXBLANKET]]></column>
+        <column name="updated_date"><![CDATA[06-06-2023 14:20:32]]></column>
+      </row>
+      <row tablename="bl_action_process">
+        <column name="action"><![CDATA[REMIND]]></column>
+        <column name="alt_text"/>
+        <column name="created_by"><![CDATA[XXBLANKET]]></column>
+        <column name="created_date"><![CDATA[22-03-2022 16:05:49]]></column>
+        <column name="flow_id"><![CDATA[20352]]></column>
+        <column name="flow_way"><![CDATA[Ingen]]></column>
+        <column name="id"><![CDATA[20354]]></column>
+        <column name="mail_bcc"/>
+        <column name="mail_body"><![CDATA[<h2>#SQL:getBlanketDescription(BLANKET_TYPE_ID).</h2>
+
+<h2>Rekvirering af #SQL:getLookupValue(TEXT_ATTRIBUTE5).</h2>
+
+<table border="1" cellpadding="1" cellspacing="1">
+	<tbody>
+		<tr>
+			<td><strong>Blanketnr.</strong>:</td>
+			<td>#SQL:getFieldValue(LBNR).</td>
+		</tr>
+		<tr>
+			<td><strong>Sendt dato</strong>:</td>
+			<td>#SQL:getFieldValue(CREATED_DATE).</td>
+		</tr>
+		<tr>
+			<td><strong>Oprettet af</strong>:</td>
+			<td>#SQL:getUserFullName(CREATED_BY).</td>
+		</tr>
+		<tr>
+			<td><strong>Afdeling (stednummer):</strong></td>
+			<td>#SQL:getFieldValue(TEXT_ATTRIBUTE1).</td>
+		</tr>
+		<tr>
+			<td><strong>Vedr&oslash;rer:</strong></td>
+			<td>#SQL:getUserFullName(REGARDING).</td>
+		</tr>
+	</tbody>
+</table>
+
+<p>&nbsp;</p>
+
+<p><a href="#SQL:getBlanketLink(BLANKET_ID).">Klik her for at se blanketten</a></p>
+
+<p><em>*** Blanketter kan kun tilg&aring;s via en DR Computer, der er p&aring; DRs net eller koblet p&aring; via VPN.***</em><br />
+<em>*** Dette er en autogenereret mail, og&nbsp;den kan ikke besvares. ***</em></p>
+
+<p>&nbsp;</p>]]></column>
+        <column name="mail_cc"/>
+        <column name="mail_from"/>
+        <column name="mail_subject"><![CDATA[Påmindelse: Du har tidligere modtaget en blanket til behandling (#SQL:getBlanketDescription(BLANKET_TYPE_ID).)]]></column>
+        <column name="mail_to"><![CDATA[FIELD:CURRENT_OWNER]]></column>
+        <column name="new_status"><![CDATA[NONE]]></column>
+        <column name="next_user"><![CDATA[NONE]]></column>
+        <column name="postaction"/>
+        <column name="preaction"/>
+        <column name="status"><![CDATA[ANY]]></column>
+        <column name="updated_by"><![CDATA[XXBLANKET]]></column>
+        <column name="updated_date"><![CDATA[21-10-2022 14:53:24]]></column>
+      </row>
+      <row tablename="bl_action_process">
+        <column name="action"><![CDATA[RESUBMIT]]></column>
+        <column name="alt_text"/>
+        <column name="created_by"><![CDATA[XXBLANKET]]></column>
+        <column name="created_date"><![CDATA[22-03-2022 16:05:49]]></column>
+        <column name="flow_id"><![CDATA[20352]]></column>
+        <column name="flow_way"><![CDATA[Godkender]]></column>
+        <column name="id"><![CDATA[20358]]></column>
+        <column name="mail_bcc"/>
+        <column name="mail_body"><![CDATA[<h2>#SQL:getBlanketDescription(BLANKET_TYPE_ID).</h2>
+
+<h3>Blanket</h3>
+
+<table border="1" cellpadding="1" cellspacing="1">
+	<tbody>
+		<tr>
+			<td><strong>Blanketnr.</strong>:</td>
+			<td>#SQL:getFieldValue(LBNR).</td>
+		</tr>
+		<tr>
+			<td><strong>Sendt dato</strong>:</td>
+			<td>#SQL:getFieldValue(CREATED_DATE).</td>
+		</tr>
+		<tr>
+			<td><strong>Oprettet af</strong>:</td>
+			<td>#SQL:getUserFullName(CREATED_BY).</td>
+		</tr>
+		<tr>
+			<td><strong>Vedr&oslash;rer:</strong></td>
+			<td>#SQL:getFieldValue(TEXT_ATTRIBUTE5).</td>
+		</tr>
+	</tbody>
+</table>
+
+<p>&nbsp;</p>
+
+<p><a href="#SQL:getBlanketLink(BLANKET_ID).">Klik her for at se blanketten</a></p>
+
+<p><em>*** Blanketter kan kun tilg&aring;s via en DR Computer, der er p&aring; DRs net eller koblet p&aring; via VPN.***</em><br />
+<em>*** Dette er en autogenereret mail, og&nbsp;den kan ikke besvares. ***</em></p>
+
+<p>&nbsp;</p>]]></column>
+        <column name="mail_cc"/>
+        <column name="mail_from"/>
+        <column name="mail_subject"><![CDATA[Du har modtaget en genfremsendt blanket til behandling (#SQL:getBlanketDescription(BLANKET_TYPE_ID).)]]></column>
+        <column name="mail_to"><![CDATA[FIELD:APPROVER1]]></column>
+        <column name="new_status"><![CDATA[CREATED]]></column>
+        <column name="next_user"><![CDATA[APPROVER1]]></column>
+        <column name="postaction"/>
+        <column name="preaction"/>
+        <column name="status"><![CDATA[REJECTED]]></column>
+        <column name="updated_by"><![CDATA[XXBLANKET]]></column>
+        <column name="updated_date"><![CDATA[22-03-2022 16:05:49]]></column>
+      </row>
+    </tabledata>
+  </table>
+  <table tablename="bl_flows">
+    <sql><![CDATA[begin delete bl_flows where flow_id in (select b.flow_id from bl_blanket_defs b where b.apex_appl_id='400' and b.flow_id is not null);
+ insert into bl_flows t 
+( description, flow_id)
+ select 
+ x.description, x.flow_id
+ from xmltable ('/table/tabledata/row' passing xmltype(:1) 
+ columns description varchar2(200) path 'column[@name eq "description"]'
+, flow_id number path 'column[@name eq "flow_id"]'
+) x; end;
+]]></sql>
+    <tabledata>
+      <row tablename="bl_flows">
+        <column name="description"><![CDATA[Bestillingsblanket til Dantaxi]]></column>
+        <column name="flow_id"><![CDATA[20352]]></column>
+      </row>
+    </tabledata>
+  </table>
+</tables>

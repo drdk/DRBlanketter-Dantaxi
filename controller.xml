@@ -1,0 +1,13 @@
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.3.xsd">
+  <include file="./apex/APPLICATION_400_APEX.xml"/>
+  <include file="./scripts/PRE_INSTALL_SQL_CHGLOG.xml"/>
+  <include file="./scripts/PRE_INSTALL_CSTRAINTS_CHGLOG.xml"/>
+  <include file="./scripts/PRE_INSTALL_TRIGGERS_CHGLOG.xml"/>
+  <include file="./scripts/MOVE_PAGE_TO_NEW_APP_CHGLOG.xml"/>
+  <include file="./data/APP_400_CHGLOG.xml"/>
+  <include file="./data/BLANKET_APP_DATA_400_CHGLOG.xml"/>
+  <include file="./data/APP_CONTENT_400_CHGLOG.xml"/>
+  <include file="./scripts/POST_INSTALL_SQL_CHGLOG.xml"/>
+  <include file="./scripts/POST_INSTALL_CSTRAINTS_CHGLOG.xml"/>
+  <include file="./scripts/POST_INSTALL_TRIGGERS_CHGLOG.xml"/>
+</databaseChangeLog>

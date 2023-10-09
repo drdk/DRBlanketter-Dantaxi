@@ -1,0 +1,55 @@
+<table tablename="xxdr_build_app_content">
+  <sql><![CDATA[begin delete xxdr_build_app_content where appid='400';
+ insert into xxdr_build_app_content t 
+( appid, build_process, build_sequence, cust_param_1_varchar, cust_param_2_varchar, custom_chglog_filename, custom_chglog_filetype, custom_data_filename, custom_sql, custom_sql_runalways, deploy_sequence, exclude_deploy_y_n, folder_name, included_y_n, object_name, object_type, order_by_clause, where_clause)
+ select 
+ x.appid, x.build_process, x.build_sequence, x.cust_param_1_varchar, x.cust_param_2_varchar, x.custom_chglog_filename, x.custom_chglog_filetype, x.custom_data_filename, case when length(x.custom_sql)=0 then null else x.custom_sql end as custom_sql, x.custom_sql_runalways, x.deploy_sequence, x.exclude_deploy_y_n, x.folder_name, x.included_y_n, x.object_name, x.object_type, case when length(x.order_by_clause)=0 then null else x.order_by_clause end as order_by_clause, case when length(x.where_clause)=0 then null else x.where_clause end as where_clause
+ from xmltable ('/table/tabledata/row' passing xmltype(:1) 
+ columns appid varchar2(250) path 'column[@name eq "appid"]'
+, build_process varchar2(10) path 'column[@name eq "build_process"]'
+, build_sequence number path 'column[@name eq "build_sequence"]'
+, cust_param_1_varchar varchar2(500) path 'column[@name eq "cust_param_1_varchar"]'
+, cust_param_2_varchar varchar2(500) path 'column[@name eq "cust_param_2_varchar"]'
+, custom_chglog_filename varchar2(500) path 'column[@name eq "custom_chglog_filename"]'
+, custom_chglog_filetype varchar2(500) path 'column[@name eq "custom_chglog_filetype"]'
+, custom_data_filename varchar2(500) path 'column[@name eq "custom_data_filename"]'
+, custom_sql clob path 'column[@name eq "custom_sql"]'
+, custom_sql_runalways varchar2(10) path 'column[@name eq "custom_sql_runalways"]'
+, deploy_sequence number path 'column[@name eq "deploy_sequence"]'
+, exclude_deploy_y_n varchar2(50) path 'column[@name eq "exclude_deploy_y_n"]'
+, folder_name varchar2(50) path 'column[@name eq "folder_name"]'
+, included_y_n varchar2(50) path 'column[@name eq "included_y_n"]'
+, object_name varchar2(50) path 'column[@name eq "object_name"]'
+, object_type varchar2(50) path 'column[@name eq "object_type"]'
+, order_by_clause clob path 'column[@name eq "order_by_clause"]'
+, where_clause clob path 'column[@name eq "where_clause"]'
+) x; end;
+]]></sql>
+  <tabledata>
+    <row tablename="xxdr_build_app_content">
+      <column name="appid"><![CDATA[400]]></column>
+      <column name="build_process"><![CDATA[BUILD]]></column>
+      <column name="build_sequence"><![CDATA[10]]></column>
+      <column name="cust_param_1_varchar"><![CDATA[127]]></column>
+      <column name="cust_param_2_varchar"><![CDATA[400]]></column>
+      <column name="custom_chglog_filename"/>
+      <column name="custom_chglog_filetype"/>
+      <column name="custom_data_filename"/>
+      <column name="custom_sql"><![CDATA[begin
+  xxdr_blanket_build_deploy.move_page_to_new_app(p_appid => :p_appid,
+                                                 p_objectname => :p_objectname,
+                                                 p_objecttype => :p_objecttype,
+                                                 p_command => :p_command);
+end;]]></column>
+      <column name="custom_sql_runalways"/>
+      <column name="deploy_sequence"><![CDATA[14000]]></column>
+      <column name="exclude_deploy_y_n"><![CDATA[N]]></column>
+      <column name="folder_name"><![CDATA[SCRIPTS]]></column>
+      <column name="included_y_n"><![CDATA[Y]]></column>
+      <column name="object_name"><![CDATA[MOVE_PAGE_TO_NEW_APP]]></column>
+      <column name="object_type"><![CDATA[CUSTOM_SQL]]></column>
+      <column name="order_by_clause"/>
+      <column name="where_clause"/>
+    </row>
+  </tabledata>
+</table>

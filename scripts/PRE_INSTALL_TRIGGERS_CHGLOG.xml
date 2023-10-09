@@ -1,0 +1,19 @@
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:n0="http://www.oracle.com/xml/ns/dbchangelog-ext" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.3.xsd">
+  <changeSet id="D5376595462DEBE050CB47712F2A6DC2" author="build" failOnError="true" runAlways="true">
+    <n0:runOracleScript objectName="PRE_INSTALL_TRIGGERS" ownerName="build" sourceType="STRING">
+      <n0:source><![CDATA[
+   begin
+      for c in (select trigger_name, 'alter trigger '||trigger_name||' disable' disable_command from user_triggers ut 
+               where ut.table_name in ('XXDR_BUILD_APP','XXDR_BUILD_APP_CONTENT') and ut.status='ENABLED') loop
+       begin
+         execute immediate c.disable_command;
+       exception
+         when others then
+          null;
+       end;
+      end loop;
+   end;
+]]></n0:source>
+    </n0:runOracleScript>
+  </changeSet>
+</databaseChangeLog>

@@ -1,0 +1,19 @@
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:n0="http://www.oracle.com/xml/ns/dbchangelog-ext" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.3.xsd">
+  <changeSet id="A03E9E9C77E8C37237C171FE5210949A" author="build" failOnError="true" runAlways="true">
+    <n0:runOracleScript objectName="NEW_BUILD" ownerName="build" sourceType="STRING">
+      <n0:source><![CDATA[declare
+      
+       l_build_number   varchar2(500);
+       l_release_number varchar2(500);
+      
+       begin
+         
+        update xxdr_build_app a
+           set a.build_number = nvl(to_number(a.build_number), 0) + 1, a.build_datetime = sysdate
+        where a.appid = '400'
+          returning a.release_number, to_number(a.build_number) into l_release_number, l_build_number;
+ 
+        end; ]]></n0:source>
+    </n0:runOracleScript>
+  </changeSet>
+</databaseChangeLog>

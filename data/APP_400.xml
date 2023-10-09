@@ -1,0 +1,36 @@
+<table tablename="xxdr_build_app">
+  <sql><![CDATA[begin delete xxdr_build_app where appid='400';
+ insert into xxdr_build_app t 
+( appid, auth_scheme_prd, auth_scheme_tst, build_datetime, build_number, db_schema, dev_jdbc_url, prd_jdbc_url, release_number, template_appid, tst_jdbc_url)
+ select 
+ x.appid, x.auth_scheme_prd, x.auth_scheme_tst, to_date(x.build_datetime,'DD-MM-YYYY HH24:MI:SS') as build_datetime, x.build_number, x.db_schema, x.dev_jdbc_url, x.prd_jdbc_url, x.release_number, x.template_appid, x.tst_jdbc_url
+ from xmltable ('/table/tabledata/row' passing xmltype(:1) 
+ columns appid varchar2(250) path 'column[@name eq "appid"]'
+, auth_scheme_prd varchar2(250) path 'column[@name eq "auth_scheme_prd"]'
+, auth_scheme_tst varchar2(250) path 'column[@name eq "auth_scheme_tst"]'
+, build_datetime varchar2(200) path 'column[@name eq "build_datetime"]'
+, build_number number path 'column[@name eq "build_number"]'
+, db_schema varchar2(250) path 'column[@name eq "db_schema"]'
+, dev_jdbc_url varchar2(250) path 'column[@name eq "dev_jdbc_url"]'
+, prd_jdbc_url varchar2(250) path 'column[@name eq "prd_jdbc_url"]'
+, release_number varchar2(250) path 'column[@name eq "release_number"]'
+, template_appid varchar2(250) path 'column[@name eq "template_appid"]'
+, tst_jdbc_url varchar2(250) path 'column[@name eq "tst_jdbc_url"]'
+) x; end;
+]]></sql>
+  <tabledata>
+    <row tablename="xxdr_build_app">
+      <column name="appid"><![CDATA[400]]></column>
+      <column name="auth_scheme_prd"><![CDATA[Application Express Accounts]]></column>
+      <column name="auth_scheme_tst"><![CDATA[Application Express Accounts]]></column>
+      <column name="build_datetime"><![CDATA[09-10-2023 12:00:51]]></column>
+      <column name="build_number"><![CDATA[6]]></column>
+      <column name="db_schema"><![CDATA[xxblanket]]></column>
+      <column name="dev_jdbc_url"><![CDATA[apxdbudvpack.lx.dr.dk:1584/apx1udv]]></column>
+      <column name="prd_jdbc_url"><![CDATA[apxdbpack.lx.dr.dk:1593/apx1prd]]></column>
+      <column name="release_number"><![CDATA[1.0.0]]></column>
+      <column name="template_appid"><![CDATA[BLANKET_APP_TEMPLATE]]></column>
+      <column name="tst_jdbc_url"><![CDATA[apxdbtstpack.lx.dr.dk:1596/apx1tst]]></column>
+    </row>
+  </tabledata>
+</table>

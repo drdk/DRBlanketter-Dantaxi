@@ -1,0 +1,185 @@
+
+######## ERROR SUMMARY ##################
+Run date:    Mon Oct 09 11:09:10 CEST 2023
+Error cnt:1
+
+----------------------------
+File #1:  apex/APPLICATION_400_APEX.xml
+Errors :1
+
+Error :1
+liquibase.exception.DatabaseException: --application/set_environment
+[mAPPLICATION 400 - Bestillingsblanket til Dantaxi
+[m--application/delete_application
+[m--application/create_application
+[m--application/shared_components/navigation/lists/navigation_menu
+[m--application/shared_components/navigation/lists/navigation_bar
+[m--application/shared_components/files/app_icon_svg
+[m--application/shared_components/files/app_icon_css
+[m--application/plugin_settings
+[m--application/shared_components/security/authorizations/administration_rights
+[m--application/shared_components/navigation/navigation_bar
+[m--application/shared_components/logic/application_items/calling_application
+[m--application/shared_components/logic/application_items/calling_worklist
+[m--application/shared_components/logic/application_settings
+[m--application/shared_components/navigation/tabs/standard
+[m--application/shared_components/navigation/tabs/parent
+[m--application/shared_components/user_interface/lovs/login_remember_username
+[m--application/pages/page_groups
+[m--application/shared_components/navigation/breadcrumbs/breadcrumb
+[m--application/shared_components/navigation/breadcrumbentry
+[m--application/shared_components/user_interface/templates/page/drawer
+[m--application/shared_components/user_interface/templates/page/master_detail
+[m--application/shared_components/user_interface/templates/page/modal_dialog
+[m--application/shared_components/user_interface/templates/page/login
+[m--application/shared_components/user_interface/templates/page/wizard_modal_dialog
+[m--application/shared_components/user_interface/templates/page/left_side_column
+[m--application/shared_components/user_interface/templates/page/right_side_column
+[m--application/shared_components/user_interface/templates/page/left_and_right_side_columns
+[m--application/shared_components/user_interface/templates/page/minimal_no_navigation
+[m--application/shared_components/user_interface/templates/page/standard
+[m--application/shared_components/user_interface/templates/button/icon
+[m--application/shared_components/user_interface/templates/button/text
+[m--application/shared_components/user_interface/templates/button/text_with_icon
+[m--application/shared_components/user_interface/templates/region/alert
+[m--application/shared_components/user_interface/templates/region/blank_with_attributes
+[m--application/shared_components/user_interface/templates/region/blank_with_attributes_no_grid
+[m--application/shared_components/user_interface/templates/region/buttons_container
+[m--application/shared_components/user_interface/templates/region/cards_container
+[m--application/shared_components/user_interface/templates/region/collapsible
+[m--application/shared_components/user_interface/templates/region/content_block
+[m--application/shared_components/user_interface/templates/region/hero
+[m--application/shared_components/user_interface/templates/region/inline_dialog
+[m--application/shared_components/user_interface/templates/region/inline_drawer
+[m--application/shared_components/user_interface/templates/region/inline_popup
+[m--application/shared_components/user_interface/templates/region/interactive_report
+[m--application/shared_components/user_interface/templates/region/login
+[m--application/shared_components/user_interface/templates/region/standard
+[m--application/shared_components/user_interface/templates/region/tabs_container
+[m--application/shared_components/user_interface/templates/region/title_bar
+[m--application/shared_components/user_interface/templates/region/wizard_container
+[m--application/shared_components/user_interface/templates/region/carousel_container
+[m--application/shared_components/user_interface/templates/list/top_navigation_tabs
+[m--application/shared_components/user_interface/templates/list/top_navigation_mega_menu
+[m--application/shared_components/user_interface/templates/list/wizard_progress
+[m--application/shared_components/user_interface/templates/list/menu_bar
+[m--application/shared_components/user_interface/templates/list/badge_list
+[m--application/shared_components/user_interface/templates/list/media_list
+[m--application/shared_components/user_interface/templates/list/side_navigation_menu
+[m--application/shared_components/user_interface/templates/list/top_navigation_menu
+[m--application/shared_components/user_interface/templates/list/navigation_bar
+[m--application/shared_components/user_interface/templates/list/cards
+[m--application/shared_components/user_interface/templates/list/tabs
+[m--application/shared_components/user_interface/templates/list/menu_popup
+[m--application/shared_components/user_interface/templates/list/links_list
+[m--application/shared_components/user_interface/templates/report/timeline
+[m--application/shared_components/user_interface/templates/report/content_row
+[m--application/shared_components/user_interface/templates/report/media_list
+[m--application/shared_components/user_interface/templates/report/value_attribute_pairs_row
+[m--application/shared_components/user_interface/templates/report/value_attribute_pairs_column
+[m--application/shared_components/user_interface/templates/report/badge_list
+[m--application/shared_components/user_interface/templates/report/contextual_info
+[m--application/shared_components/user_interface/templates/report/standard
+[m--application/shared_components/user_interface/templates/report/comments
+[m--application/shared_components/user_interface/templates/report/alerts
+[m--application/shared_components/user_interface/templates/report/cards
+[m--application/shared_components/user_interface/templates/report/search_results
+[m--application/shared_components/user_interface/templates/label/optional_floating
+[m--application/shared_components/user_interface/templates/label/required_floating
+[m--application/shared_components/user_interface/templates/label/hidden
+[m--application/shared_components/user_interface/templates/label/optional
+[m--application/shared_components/user_interface/templates/label/required
+[m--application/shared_components/user_interface/templates/label/optional_above
+[m--application/shared_components/user_interface/templates/label/required_above
+[m--application/shared_components/user_interface/templates/breadcrumb/breadcrumb
+[m--application/shared_components/user_interface/templates/popuplov
+[m--application/shared_components/user_interface/templates/calendar/calendar
+[m--application/shared_components/user_interface/themes
+[m--application/shared_components/user_interface/theme_style
+[m--application/shared_components/user_interface/theme_files
+[m--application/shared_components/user_interface/template_opt_groups
+[m--application/shared_components/user_interface/template_options
+[m--application/shared_components/globalization/language
+[m--application/shared_components/globalization/translations
+[m--application/shared_components/logic/build_options
+[m--application/shared_components/globalization/messages
+[m--application/shared_components/globalization/dyntranslations
+[m--application/shared_components/security/authentications/application_express_accounts
+[m--application/user_interfaces
+[m--application/user_interfaces/combined_files
+[m--application/pages/page_00000
+[m--application/pages/page_00400
+[m--application/pages/page_09999
+[m--application/end_environment
+[m
+Error starting at line : 16,049 in command -
+begin
+wwv_flow_api.import_end(p_auto_install_sup_obj => nvl(wwv_flow_application_install.get_auto_install_sup_obj, false));
+commit;
+end;
+Error report -
+ORA-20987: APEX - Unable to fetch authentication_scheme in application 400. - Contact your application administrator.
+ORA-06512: at "APEX_210200.WWV_FLOW_ERROR", line 1069
+ORA-06512: at "APEX_210200.WWV_FLOW_ERROR", line 1517
+ORA-06512: at "APEX_210200.WWV_FLOW_API", line 27395
+ORA-06512: at "APEX_210200.WWV_FLOW_API", line 27484
+ORA-06512: at "APEX_210200.WWV_FLOW_API", line 29616
+ORA-06512: at "APEX_210200.WWV_FLOW_API", line 29647
+ORA-06512: at line 2
+	at oracle.dbtools.raptor.liquibase.util.QueryUtils.runSqlReturnResult(QueryUtils.java:228)
+	at liquibase.executor.jvm.SqlClExecutor.execute(SqlClExecutor.java:99)
+	at liquibase.database.AbstractJdbcDatabase.execute(AbstractJdbcDatabase.java:1270)
+	at liquibase.database.AbstractJdbcDatabase.executeStatements(AbstractJdbcDatabase.java:1252)
+	at liquibase.changelog.ChangeSet.execute(ChangeSet.java:679)
+	at liquibase.changelog.visitor.UpdateVisitor.visit(UpdateVisitor.java:56)
+	at liquibase.changelog.ChangeLogIterator$2.lambda$null$0(ChangeLogIterator.java:113)
+	at liquibase.Scope.lambda$child$0(Scope.java:180)
+	at liquibase.Scope.child(Scope.java:189)
+	at liquibase.Scope.child(Scope.java:179)
+	at liquibase.Scope.child(Scope.java:158)
+	at liquibase.changelog.ChangeLogIterator$2.lambda$run$1(ChangeLogIterator.java:112)
+	at liquibase.Scope.lambda$child$0(Scope.java:180)
+	at liquibase.Scope.child(Scope.java:189)
+	at liquibase.Scope.child(Scope.java:179)
+	at liquibase.Scope.child(Scope.java:158)
+	at liquibase.Scope.child(Scope.java:243)
+	at liquibase.changelog.ChangeLogIterator$2.run(ChangeLogIterator.java:93)
+	at liquibase.Scope.lambda$child$0(Scope.java:180)
+	at liquibase.Scope.child(Scope.java:189)
+	at liquibase.Scope.child(Scope.java:179)
+	at liquibase.Scope.child(Scope.java:158)
+	at liquibase.Scope.child(Scope.java:243)
+	at liquibase.Scope.child(Scope.java:247)
+	at liquibase.changelog.ChangeLogIterator.run(ChangeLogIterator.java:65)
+	at liquibase.Liquibase.lambda$null$0(Liquibase.java:291)
+	at liquibase.Scope.lambda$child$0(Scope.java:180)
+	at liquibase.Scope.child(Scope.java:189)
+	at liquibase.Scope.child(Scope.java:179)
+	at liquibase.Scope.child(Scope.java:158)
+	at liquibase.Scope.child(Scope.java:243)
+	at liquibase.Liquibase.lambda$update$1(Liquibase.java:290)
+	at liquibase.Scope.lambda$child$0(Scope.java:180)
+	at liquibase.Scope.child(Scope.java:189)
+	at liquibase.Scope.child(Scope.java:179)
+	at liquibase.Scope.child(Scope.java:158)
+	at liquibase.Liquibase.runInScope(Liquibase.java:2447)
+	at liquibase.Liquibase.update(Liquibase.java:236)
+	at liquibase.Liquibase.update(Liquibase.java:221)
+	at oracle.dbtools.raptor.liquibase.core.CommandGenerator.lambda$UpdateCommand$30(CommandGenerator.java:1361)
+	at liquibase.Scope.lambda$child$0(Scope.java:180)
+	at liquibase.Scope.child(Scope.java:189)
+	at liquibase.Scope.child(Scope.java:179)
+	at liquibase.Scope.child(Scope.java:158)
+	at oracle.dbtools.raptor.liquibase.core.CommandGenerator.UpdateCommand(CommandGenerator.java:1356)
+	at oracle.dbtools.raptor.scriptrunner.commands.liquibase.LbCommand.handleEvent(LbCommand.java:364)
+	at oracle.dbtools.raptor.newscriptrunner.CommandRegistry.fireListeners(CommandRegistry.java:448)
+	at oracle.dbtools.raptor.newscriptrunner.ScriptRunner.run(ScriptRunner.java:241)
+	at oracle.dbtools.raptor.newscriptrunner.ScriptExecutor.run(ScriptExecutor.java:355)
+	at oracle.dbtools.raptor.newscriptrunner.ScriptExecutor.run(ScriptExecutor.java:238)
+	at oracle.dbtools.raptor.scriptrunner.cmdline.SqlCli.runFile(SqlCli.java:1175)
+	at oracle.dbtools.raptor.scriptrunner.cmdline.SqlCli.handleAtFiles(SqlCli.java:710)
+	at oracle.dbtools.raptor.scriptrunner.cmdline.SqlCli.initSqlcl(SqlCli.java:1097)
+	at oracle.dbtools.raptor.scriptrunner.cmdline.SqlCli.runSqlcl(SqlCli.java:1234)
+	at oracle.dbtools.raptor.scriptrunner.cmdline.SqlCli.main(SqlCli.java:350)
+
+----------------------------
