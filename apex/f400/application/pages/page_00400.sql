@@ -21,7 +21,7 @@ wwv_flow_api.create_page(
 ,p_autocomplete_on_off=>'OFF'
 ,p_page_template_options=>'#DEFAULT#'
 ,p_last_updated_by=>'RUJO'
-,p_last_upd_yyyymmddhh24miss=>'20231009115709'
+,p_last_upd_yyyymmddhh24miss=>'20231010085253'
 );
 wwv_flow_api.create_page_plug(
  p_id=>wwv_flow_api.id(71369239001080751)
@@ -1786,7 +1786,7 @@ wwv_flow_api.create_page_validation(
 ,p_validation_type=>'ITEM_NOT_NULL'
 ,p_error_message=>unistr('Alternativ godkender skal v\00E6lges')
 ,p_always_execute=>'Y'
-,p_validation_condition=>':P400_ALT_STEDNUMMER IS NOT NULL AND :P400_STATUS = ''NEW'''
+,p_validation_condition=>':P400_ALT_STEDNUMMER IS NOT NULL AND :P400_STATUS = ''NEW'' OR :P400_STATUS = ''REJECTED'''
 ,p_validation_condition2=>'PLSQL'
 ,p_validation_condition_type=>'EXPRESSION'
 ,p_associated_item=>wwv_flow_api.id(43794958575184595)
@@ -1843,6 +1843,9 @@ wwv_flow_api.create_page_da_action(
 ,p_attribute_04=>'N'
 ,p_attribute_05=>'PLSQL'
 ,p_wait_for_result=>'Y'
+,p_server_condition_type=>'VALUE_OF_ITEM_IN_CONDITION_IN_COLON_DELIMITED_LIST'
+,p_server_condition_expr1=>'P400_STATUS'
+,p_server_condition_expr2=>'NEW:REJECTED'
 );
 wwv_flow_api.create_page_da_event(
  p_id=>wwv_flow_api.id(43816840463184616)
@@ -1948,6 +1951,9 @@ wwv_flow_api.create_page_da_action(
 ,p_attribute_04=>'N'
 ,p_attribute_05=>'PLSQL'
 ,p_wait_for_result=>'Y'
+,p_server_condition_type=>'VALUE_OF_ITEM_IN_CONDITION_IN_COLON_DELIMITED_LIST'
+,p_server_condition_expr1=>'P400_STATUS'
+,p_server_condition_expr2=>'NEW:REJECTED'
 );
 wwv_flow_api.component_end;
 end;
@@ -2269,6 +2275,9 @@ wwv_flow_api.create_page_da_action(
 ,p_attribute_04=>'N'
 ,p_attribute_05=>'PLSQL'
 ,p_wait_for_result=>'Y'
+,p_server_condition_type=>'VALUE_OF_ITEM_IN_CONDITION_IN_COLON_DELIMITED_LIST'
+,p_server_condition_expr1=>'P400_STATUS'
+,p_server_condition_expr2=>'NEW:REJECTED'
 );
 wwv_flow_api.create_page_da_event(
  p_id=>wwv_flow_api.id(43828213005184623)
@@ -2425,8 +2434,9 @@ wwv_flow_api.create_page_da_event(
 ,p_triggering_element=>'P400_ORG'
 ,p_bind_type=>'bind'
 ,p_bind_event_type=>'change'
-,p_display_when_type=>'ITEM_IS_NOT_NULL'
-,p_display_when_cond=>'P400_ALT_STEDNUMMER'
+,p_display_when_type=>'VALUE_OF_ITEM_IN_CONDITION_IN_COLON_DELIMITED_LIST'
+,p_display_when_cond=>'P400_STATUS'
+,p_display_when_cond2=>'NEW:REJECTED'
 );
 wwv_flow_api.create_page_da_action(
  p_id=>wwv_flow_api.id(43833700924184626)
@@ -2496,6 +2506,9 @@ wwv_flow_api.create_page_da_action(
 ,p_attribute_04=>'N'
 ,p_attribute_05=>'PLSQL'
 ,p_wait_for_result=>'Y'
+,p_server_condition_type=>'VALUE_OF_ITEM_IN_CONDITION_IN_COLON_DELIMITED_LIST'
+,p_server_condition_expr1=>'P400_STATUS'
+,p_server_condition_expr2=>'NEW:REJECTED'
 );
 wwv_flow_api.create_page_da_event(
  p_id=>wwv_flow_api.id(43835579754184627)
