@@ -23,8 +23,8 @@
       <column name="appid"><![CDATA[400]]></column>
       <column name="auth_scheme_prd"><![CDATA[Application Express Accounts]]></column>
       <column name="auth_scheme_tst"><![CDATA[Application Express Accounts]]></column>
-      <column name="build_datetime"><![CDATA[10-10-2023 08:53:29]]></column>
-      <column name="build_number"><![CDATA[9]]></column>
+      <column name="build_datetime"><![CDATA[10-10-2023 11:24:40]]></column>
+      <column name="build_number"><![CDATA[10]]></column>
       <column name="db_schema"><![CDATA[xxblanket]]></column>
       <column name="dev_jdbc_url"><![CDATA[apxdbudvpack.lx.dr.dk:1584/apx1udv]]></column>
       <column name="prd_jdbc_url"><![CDATA[apxdbpack.lx.dr.dk:1593/apx1prd]]></column>
