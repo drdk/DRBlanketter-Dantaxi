@@ -1,5 +1,5 @@
 <databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:n0="http://www.oracle.com/xml/ns/dbchangelog-ext" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.3.xsd">
-  <changeSet id="56BEE9C3E0ECE032A799F6203677654F" author="build" failOnError="true" runAlways="false">
+  <changeSet id="1696A03BAA1059E3EA47AA4C6A375C7E" author="build" failOnError="true" runAlways="false">
     <n0:runOracleScript objectName="XXDR_BUILD_APP.APP.400" ownerName="build" sourceType="STRING">
       <n0:source><![CDATA[build import-data-generic ./data/APP_400.xml]]></n0:source>
     </n0:runOracleScript>

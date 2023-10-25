@@ -1,7 +1,7 @@
 git pull
 git add --all
-git commit -m "Genintroduceret funktion der henter blanketdata fra systemet on the fly" 
+git commit -m "Run build 1.0.0.12" 
 git push origin
-git tag "1.0.0.10"
+git tag "Lagt i test"
 git push origin --tags
 git log --pretty=oneline
