@@ -39,7 +39,7 @@ PRD-DEPLOY.ps1
 
 | Apex workspace | Application id | Schema    |
 |----------------|----------------|-----------|
-| DRBLANKET      | 156            | xxblanket |
+| DRBLANKET      | 400            | xxblanket |
 
 
 | Environment | Database | Apex Workspace URL                    | Apex application URL                          | Single Signon                                              | Uden Kerberos (til REST oauth2)       |

@@ -32,7 +32,7 @@ wwv_flow_api.create_page(
 ''))
 ,p_page_template_options=>'#DEFAULT#'
 ,p_last_updated_by=>'RUJO'
-,p_last_upd_yyyymmddhh24miss=>'20231020105911'
+,p_last_upd_yyyymmddhh24miss=>'20231106111014'
 );
 wwv_flow_api.create_page_plug(
  p_id=>wwv_flow_api.id(71369239001080751)
@@ -988,6 +988,7 @@ wwv_flow_api.create_page_branch(
 ,p_branch_action=>'f?p=&CALLING_APPLICATION.:&CALLING_WORKLIST.:&SESSION.::&DEBUG.:RP,100::&success_msg=#SUCCESS_MSG#'
 ,p_branch_point=>'BEFORE_PROCESSING'
 ,p_branch_type=>'REDIRECT_URL'
+,p_branch_when_button_id=>wwv_flow_api.id(43808355353184605)
 ,p_branch_sequence=>10
 );
 wwv_flow_api.create_page_item(
@@ -1377,7 +1378,7 @@ wwv_flow_api.create_page_item(
 ,p_field_template=>wwv_flow_api.id(43746694192178460)
 ,p_item_template_options=>'#DEFAULT#'
 ,p_lov_display_extra=>'NO'
-,p_inline_help_text=>'(OBS! Udfyldes kun hvis egen afdeling ikke skal betale)'
+,p_inline_help_text=>unistr('(OBS! Udfyldes kun hvis egen afdeling ikke skal betale eller der skal en anden godkender p\00E5)')
 ,p_encrypt_session_state_yn=>'N'
 ,p_attribute_01=>'POPUP'
 ,p_attribute_02=>'FIRST_ROWSET'
@@ -1831,7 +1832,7 @@ wwv_flow_api.create_page_validation(
  p_id=>wwv_flow_api.id(44126307667640310)
 ,p_validation_name=>'approverNOTregarding'
 ,p_validation_sequence=>40
-,p_validation=>':P400_REGARDING != :P400_APPROVER1'
+,p_validation=>':P400_REGARDING != :P400_APPROVER1 AND :APP_USER != :P400_APPROVER1'
 ,p_validation2=>'PLSQL'
 ,p_validation_type=>'EXPRESSION'
 ,p_error_message=>unistr('Det er ikke tilladt at godkende blanketter, som vedr\00F8rer en selv!')
@@ -2740,6 +2741,135 @@ wwv_flow_api.create_page_da_action(
 ,p_affected_region_id=>wwv_flow_api.id(44014574238465007)
 );
 wwv_flow_api.create_page_process(
+ p_id=>wwv_flow_api.id(43812768245184612)
+,p_process_sequence=>80
+,p_process_point=>'AFTER_SUBMIT'
+,p_process_type=>'NATIVE_PLSQL'
+,p_process_name=>'P400_CREATE_CLICK'
+,p_process_sql_clob=>wwv_flow_string.join(wwv_flow_t_varchar2(
+'DECLARE',
+'pResult varchar2(1);',
+'pMessage varchar2(1000);',
+'',
+'dStednummer     VARCHAR2(400);',
+'dFornavn        VARCHAR2(100);',
+'dEfternavn      VARCHAR2(100);',
+'dKonto          VARCHAR2(100);',
+'dBonner         VARCHAR2(100);',
+'dBlanketType    VARCHAR2(100);',
+'dRemarks        VARCHAR2(30000);',
+'dApprover       VARCHAR2(100);',
+'doInsert        BOOLEAN;',
+'',
+'BEGIN',
+'',
+'    doInsert := true;',
+'',
+'    dStednummer    :=:P400_ORG;',
+'    dFornavn       :=:P400_FORNAVN;',
+'    dEfternavn     :=:P400_EFTERNAVN;',
+'    dKonto         :=:P400_KONTO;',
+'    dBlanketType   :=:P400_REQUEST_TYPE;',
+'    dBonner        :=:P400_BONNER;',
+'    dRemarks       :=:P400_REMARKS;',
+'    dApprover      :=:P400_APPROVER1;',
+'    ',
+'    if :P400_ALT_STEDNUMMER is not null then',
+'      dStednummer := :P400_ALT_STEDNUMMER;',
+'    end if;',
+'',
+'',
+'    if dBlanketType = ''PERSONAL_CARD'' then      ',
+'       dBonner := null;  ',
+'    elsif dBlanketType = ''COUPONS'' then',
+'       dFornavn   := null;',
+'       dEfternavn := null;',
+'--       dApprover  := null;',
+'    else',
+'       dFornavn   := null;',
+'       dEfternavn := null; ',
+'       dBonner    := null;',
+'       dApprover  := null;',
+'    end if;',
+'    ',
+'    if :P400_ALT_STEDNUMMER is not null and :P400_ALT_APPROVER is null then',
+'      doInsert:=false;',
+'    end if;',
+'    ',
+'    if doInsert then',
+'        insert into bl_blanket (',
+'            blanket_id,',
+'            blanket_type_id,',
+'            lbnr,',
+'            created_by,',
+'            created_date,',
+'            updated_by,',
+'            updated_date,',
+'            status,',
+'            regarding,',
+'            department,',
+'            supervisor,',
+'        -----------------------',
+'            approver1,',
+'            text_attribute1,',
+'            text_attribute2,',
+'            text_attribute3,',
+'            text_attribute4,',
+'            text_attribute5,',
+'            text_attribute6,',
+'            text_attribute9',
+'',
+'        ) values (',
+'            :p400_blanket_id,',
+'            :p400_type_id,',
+'            :p400_blanket_no,',
+'            upper(:p400_created_by),',
+'            SYSDATE,',
+'            upper(:p400_updated_by),',
+'            SYSDATE,',
+'            :P400_status,',
+'            upper(:p400_regarding),',
+'            :p400_org,',
+'            upper(:p400_supervisor),',
+'        ----------------------      ',
+'            dApprover,',
+'            dStednummer,',
+'            dFornavn,',
+'            dEfternavn,',
+'            dKonto,',
+'            dBlanketType,',
+'            dBonner,',
+'            dRemarks',
+'        );',
+'',
+'',
+'',
+'',
+'',
+'',
+'        if dBlanketType = ''PERSONAL_CARD'' then      ',
+'           xxdr_blanket.process_blanket(:p400_blanket_id,''CREATE_PERSONAL_CARD'',pResult,pMessage); ',
+'        elsif dBlanketType = ''COUPONS'' then',
+'           xxdr_blanket.process_blanket(:p400_blanket_id,''CREATE_COUPONS'',pResult,pMessage);',
+'        else',
+'           xxdr_blanket.process_blanket(:p400_blanket_id,''CREATE_INVOICE_SPEC'',pResult,pMessage);',
+'        end if;',
+'',
+'        if pResult = ''E'' then',
+'            apex_error.add_error(p_message => pMessage,p_display_location => apex_error.c_inline_in_notification);',
+'        else',
+'            select CURRENT_OWNER into :P400_NEXT_APPROVER from bl_blanket where blanket_id=:p400_blanket_id;',
+'        end if;',
+'',
+'    end if;',
+'    ',
+'END;'))
+,p_process_clob_language=>'PLSQL'
+,p_error_display_location=>'INLINE_IN_NOTIFICATION'
+,p_process_when_button_id=>wwv_flow_api.id(43807971883184605)
+,p_process_success_message=>'Anmodning &P400_BLANKET_NO. er nu oprettet og sendt til kontrol/godkendelse hos &P400_NEXT_APPROVER.'
+);
+wwv_flow_api.create_page_process(
  p_id=>wwv_flow_api.id(43814318665184614)
 ,p_process_sequence=>80
 ,p_process_point=>'BEFORE_HEADER'
@@ -2903,6 +3033,18 @@ wwv_flow_api.create_page_process(
 ,p_process_when_button_id=>wwv_flow_api.id(43810785965184607)
 ,p_process_success_message=>unistr('Anmodning &P400_BLANKET_NO. er gemt. Kvittering for modtagelsen er sendt til \00D8SC.')
 );
+wwv_flow_api.component_end;
+end;
+/
+begin
+wwv_flow_api.component_begin (
+ p_version_yyyy_mm_dd=>'2021.10.15'
+,p_release=>'21.2.3'
+,p_default_workspace_id=>7353200945373601
+,p_default_application_id=>400
+,p_default_id_offset=>0
+,p_default_owner=>'XXBLANKET'
+);
 wwv_flow_api.create_page_process(
  p_id=>wwv_flow_api.id(43813598929184613)
 ,p_process_sequence=>60
@@ -3005,145 +3147,6 @@ wwv_flow_api.create_page_process(
 ,p_process_when_button_id=>wwv_flow_api.id(43809173758184606)
 ,p_process_success_message=>'Anmodning &P400_BLANKET_NO. er nu genfremsendt til &P400_NEXT_APPROVER.'
 );
-wwv_flow_api.component_end;
-end;
-/
-begin
-wwv_flow_api.component_begin (
- p_version_yyyy_mm_dd=>'2021.10.15'
-,p_release=>'21.2.3'
-,p_default_workspace_id=>7353200945373601
-,p_default_application_id=>400
-,p_default_id_offset=>0
-,p_default_owner=>'XXBLANKET'
-);
-wwv_flow_api.create_page_process(
- p_id=>wwv_flow_api.id(43812768245184612)
-,p_process_sequence=>80
-,p_process_point=>'ON_SUBMIT_BEFORE_COMPUTATION'
-,p_process_type=>'NATIVE_PLSQL'
-,p_process_name=>'P400_CREATE_CLICK'
-,p_process_sql_clob=>wwv_flow_string.join(wwv_flow_t_varchar2(
-'DECLARE',
-'pResult varchar2(1);',
-'pMessage varchar2(1000);',
-'',
-'dStednummer     VARCHAR2(400);',
-'dFornavn        VARCHAR2(100);',
-'dEfternavn      VARCHAR2(100);',
-'dKonto          VARCHAR2(100);',
-'dBonner         VARCHAR2(100);',
-'dBlanketType    VARCHAR2(100);',
-'dRemarks        VARCHAR2(30000);',
-'dApprover       VARCHAR2(100);',
-'doInsert        BOOLEAN;',
-'',
-'BEGIN',
-'',
-'    doInsert := true;',
-'',
-'    dStednummer    :=:P400_ORG;',
-'    dFornavn       :=:P400_FORNAVN;',
-'    dEfternavn     :=:P400_EFTERNAVN;',
-'    dKonto         :=:P400_KONTO;',
-'    dBlanketType   :=:P400_REQUEST_TYPE;',
-'    dBonner        :=:P400_BONNER;',
-'    dRemarks       :=:P400_REMARKS;',
-'    dApprover      :=:P400_APPROVER1;',
-'    ',
-'    if :P400_ALT_STEDNUMMER is not null then',
-'      dStednummer := :P400_ALT_STEDNUMMER;',
-'    end if;',
-'',
-'',
-'    if dBlanketType = ''PERSONAL_CARD'' then      ',
-'       dBonner := null;  ',
-'    elsif dBlanketType = ''COUPONS'' then',
-'       dFornavn   := null;',
-'       dEfternavn := null;',
-'--       dApprover  := null;',
-'    else',
-'       dFornavn   := null;',
-'       dEfternavn := null; ',
-'       dBonner    := null;',
-'       dApprover  := null;',
-'    end if;',
-'    ',
-'    if :P400_ALT_STEDNUMMER is not null and :P400_ALT_APPROVER is null then',
-'      doInsert:=false;',
-'    end if;',
-'    ',
-'    if doInsert then',
-'        insert into bl_blanket (',
-'            blanket_id,',
-'            blanket_type_id,',
-'            lbnr,',
-'            created_by,',
-'            created_date,',
-'            updated_by,',
-'            updated_date,',
-'            status,',
-'            regarding,',
-'            department,',
-'            supervisor,',
-'        -----------------------',
-'            approver1,',
-'            text_attribute1,',
-'            text_attribute2,',
-'            text_attribute3,',
-'            text_attribute4,',
-'            text_attribute5,',
-'            text_attribute6,',
-'            text_attribute9',
-'',
-'        ) values (',
-'            :p400_blanket_id,',
-'            :p400_type_id,',
-'            :p400_blanket_no,',
-'            upper(:p400_created_by),',
-'            SYSDATE,',
-'            upper(:p400_updated_by),',
-'            SYSDATE,',
-'            :P400_status,',
-'            upper(:p400_regarding),',
-'            :p400_org,',
-'            upper(:p400_supervisor),',
-'        ----------------------      ',
-'            dApprover,',
-'            dStednummer,',
-'            dFornavn,',
-'            dEfternavn,',
-'            dKonto,',
-'            dBlanketType,',
-'            dBonner,',
-'            dRemarks',
-'        );',
-'',
-'',
-'',
-'',
-'',
-'',
-'        if dBlanketType = ''PERSONAL_CARD'' then      ',
-'           xxdr_blanket.process_blanket(:p400_blanket_id,''CREATE_PERSONAL_CARD'',pResult,pMessage); ',
-'        elsif dBlanketType = ''COUPONS'' then',
-'           xxdr_blanket.process_blanket(:p400_blanket_id,''CREATE_COUPONS'',pResult,pMessage);',
-'        else',
-'           xxdr_blanket.process_blanket(:p400_blanket_id,''CREATE_INVOICE_SPEC'',pResult,pMessage);',
-'        end if;',
-'',
-'',
-'        select CURRENT_OWNER into :P400_NEXT_APPROVER from bl_blanket where blanket_id=:p400_blanket_id;',
-'    end if;',
-'    ',
-'END;'))
-,p_process_clob_language=>'PLSQL'
-,p_process_error_message=>'Fejl'
-,p_error_display_location=>'INLINE_IN_NOTIFICATION'
-,p_process_when_button_id=>wwv_flow_api.id(43807971883184605)
-,p_process_success_message=>'Anmodning &P400_BLANKET_NO. er nu oprettet og sendt til kontrol/godkendelse hos &P400_NEXT_APPROVER.'
-);
-null;
 wwv_flow_api.component_end;
 end;
 /

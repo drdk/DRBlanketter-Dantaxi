@@ -700,14 +700,14 @@
         <column name="mail_cc"/>
         <column name="mail_from"/>
         <column name="mail_subject"><![CDATA[Dine taxabonner er ankommet og kan afhentes i ØSC Opg. 1-1]]></column>
-        <column name="mail_to"><![CDATA[FIELD:CREATED_BY]]></column>
+        <column name="mail_to"><![CDATA[FIELD:REGARDING,FIELD:CREATED_BY]]></column>
         <column name="new_status"><![CDATA[ARRIVED]]></column>
         <column name="next_user"><![CDATA[REGARDING]]></column>
         <column name="postaction"/>
         <column name="preaction"/>
         <column name="status"><![CDATA[ORDERED]]></column>
-        <column name="updated_by"><![CDATA[XXBLANKET]]></column>
-        <column name="updated_date"><![CDATA[21-10-2022 14:53:24]]></column>
+        <column name="updated_by"><![CDATA[RUJO]]></column>
+        <column name="updated_date"><![CDATA[06-11-2023 11:12:56]]></column>
       </row>
       <row tablename="bl_action_process">
         <column name="action"><![CDATA[RECEIVED_PERSONAL_CARD]]></column>
